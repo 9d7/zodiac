@@ -105,7 +105,6 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 val = value.Get<Vector2>();
         horizontalVelocity = val.x;
-        print(horizontalVelocity);
     }
     void OnJump(InputValue value)
     {
