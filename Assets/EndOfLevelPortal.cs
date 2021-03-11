@@ -10,18 +10,18 @@ public class EndOfLevelPortal : MonoBehaviour
 
     private float negativeDistance = 0.1f;
 
-    private Collider2D collider2D;
+    private Collider2D _collider;
     // Start is called before the first frame update
     void Awake()
     {
-        collider2D = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
     {
         // check if correctly-sized character is in portal
 
-        Bounds bounds = collider2D.bounds;
+        Bounds bounds = _collider.bounds;
         Vector2[] positivePoints =
         {
             new Vector2(bounds.extents.x, 0f),
@@ -57,6 +57,7 @@ public class EndOfLevelPortal : MonoBehaviour
         if (PlayerPrefs.GetInt("maxUnlocked", 1) < levelNumber)
         {
             PlayerPrefs.SetInt("maxUnlocked", levelNumber);
+            PlayerPrefs.Save();
         }
 
         SceneManager.LoadScene("Level" + levelNumber.ToString(), LoadSceneMode.Single);
