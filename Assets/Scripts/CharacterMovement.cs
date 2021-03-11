@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
 
 
     private Rigidbody2D rbody;
-    private CapsuleCollider2D capsuleCollider;
+    private Collider2D collider2D;
 
     private bool grounded;
     private float horizontalVelocity = 0.0f;
@@ -41,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        collider2D = GetComponent<BoxCollider2D>();
         rbody.gravityScale = gravityScale;
     }
 
@@ -51,7 +51,7 @@ public class CharacterMovement : MonoBehaviour
         //
         // check if grounded
         //
-        Bounds colliderPos = capsuleCollider.bounds;
+        Bounds colliderPos = collider2D.bounds;
         Vector2 point = new Vector2(colliderPos.center.x, colliderPos.min.y);
         Vector2 size = new Vector2(colliderPos.extents.x - boxcastMargins, boxcastMargins);
 
