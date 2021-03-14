@@ -33,16 +33,19 @@ public class EndOfLevelPortal : MonoBehaviour
 
         foreach (Vector2 vec in positivePoints)
         {
-            if (Physics2D.OverlapCircleAll(vec + center, negativeDistance / 2f, whatIsPlayer).Length == 0)
-            {
-                return;
-            }
+            Collider2D c = Physics2D.OverlapCircle(
+                vec + center,
+                negativeDistance / 2f,
+                whatIsPlayer
+            );
+            if (c is null) return;
 
-            if (Physics2D.OverlapCircleAll(vec + vec.normalized * negativeDistance + center, negativeDistance / 2f,
-                whatIsPlayer).Length > 0)
-            {
-                return;
-            }
+            c = Physics2D.OverlapCircle(
+                vec + vec.normalized * negativeDistance + center,
+                negativeDistance / 2f,
+                whatIsPlayer
+            );
+            if (!(c is null)) return;
         }
 
         NextLevel();

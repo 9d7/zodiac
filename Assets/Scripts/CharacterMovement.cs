@@ -34,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
     private Collider2D _collider;
 
     private bool grounded;
+    private bool spacePressed;
     private float horizontalVelocity = 0.0f;
 
     private float timeSinceGrounded = Mathf.Infinity;
@@ -49,6 +50,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        rbody.gravityScale = gravityScale;
 
         //
         // check if grounded
@@ -75,6 +78,11 @@ public class CharacterMovement : MonoBehaviour
                 Mathf.Sqrt(-2f * Physics2D.gravity.y * gravityScale * maxJumpHeight));
             timeSinceBuffered = Mathf.Infinity;
             timeSinceGrounded = Mathf.Infinity;
+
+            if (!spacePressed)
+            {
+                rbody.velocity *= new Vector2(1f, Mathf.Sqrt(minJumpHeight / maxJumpHeight));
+            }
         }
 
         //
@@ -115,6 +123,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
+        spacePressed = value.isPressed;
         if (value.isPressed)
         {
             timeSinceBuffered = 0f;
