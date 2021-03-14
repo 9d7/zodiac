@@ -136,8 +136,5 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    void OnTransform(InputValue value)
-    {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-    }
+
 }
