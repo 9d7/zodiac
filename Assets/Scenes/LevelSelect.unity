@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1889617547687313196, guid: d0a977b40eac24d4e87327d63e3d2856, type: 3}
-  numberOfLevels: 5
+  numberOfLevels: 2
   marginBetweenButtons: {x: 20, y: 20}
   buttonsPerRow: 5
   rowsPerPage: 3

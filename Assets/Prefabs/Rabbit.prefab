@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6248031782217462217}
   - component: {fileID: 6248031782217462216}
   m_Layer: 6
-  m_Name: Temporary Character
+  m_Name: Rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.01
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -190,9 +190,9 @@ MonoBehaviour:
   minJumpHeight: 2
   maxJumpHeight: 4.65
   gravityScale: 3.7
-  acceleration: 60.3
-  airAcceleration: 32.12
-  maxSpeed: 15.1
+  acceleration: 20
+  airAcceleration: 16
+  maxSpeed: 3
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2

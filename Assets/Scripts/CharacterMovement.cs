@@ -48,6 +48,16 @@ public class CharacterMovement : MonoBehaviour
         rbody.gravityScale = gravityScale;
     }
 
+    public float GetHorizontalInput()
+    {
+        return horizontalVelocity;
+    }
+
+    public void SetHorizontalInput(float h)
+    {
+        horizontalVelocity = h;
+    }
+
     private void FixedUpdate()
     {
 
@@ -99,7 +109,7 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             // damp based on maxSpeed
-            xVel *= (maxSpeed / (maxSpeed + a * Time.fixedDeltaTime));
+            xVel *= (maxSpeed / (maxSpeed + a * Time.fixedDeltaTime * 0.5f));
         }
         rbody.velocity = new Vector2(xVel, rbody.velocity.y);
 

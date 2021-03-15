@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     {
         charcterNum = characters.Length;
         curCharacterIdx = 0;
-        gameObject.transform.position = new Vector3(-15,-4,0);
+          
     }
 
     // Update is called once per frame
@@ -36,9 +36,13 @@ public class PlayerControl : MonoBehaviour
 
     void OnTransform(InputValue value)
     {
+        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
+        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
         curCharacterIdx = (curCharacterIdx + 1) % charcterNum;
         currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
+        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
 }
