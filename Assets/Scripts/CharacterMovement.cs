@@ -40,6 +40,9 @@ public class CharacterMovement : MonoBehaviour
     private float timeSinceGrounded = Mathf.Infinity;
     private float timeSinceBuffered = Mathf.Infinity;
 
+    public float health = 10f;
+    public float underWaterTime = 3f;
+
 
     void Awake()
     {
@@ -119,11 +122,6 @@ public class CharacterMovement : MonoBehaviour
     {
         timeSinceBuffered += Time.deltaTime;
         timeSinceGrounded += Time.deltaTime;
-
-        if(gameObject.transform.position.y < -15)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
     }
 
     void OnMove(InputValue value)
@@ -143,6 +141,29 @@ public class CharacterMovement : MonoBehaviour
             {
                 rbody.velocity *= new Vector2(1f, Mathf.Sqrt(minJumpHeight / maxJumpHeight));
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "water")
+        {
+            underWaterTime -= Time.deltaTime;
+            //Debug.Log(underWaterTime);
+        }
+        if (collision.gameObject.tag == "spike")
+        {
+            Debug.Log("spike");
         }
     }
 

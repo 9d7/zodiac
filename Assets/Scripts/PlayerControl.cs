@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class PlayerControl : MonoBehaviour
         {
             gameObject.transform.position = currCharacter.transform.position;
         }
+        if (gameObject.transform.position.y < -15)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     void OnTransform(InputValue value)
@@ -45,4 +50,5 @@ public class PlayerControl : MonoBehaviour
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
+
 }
