@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "AxisDeadzone",
                     "interactions": ""
+                },
+                {
+                    "name": "GamePause",
+                    "type": "Button",
+                    "id": "f14dfe7f-c69b-4419-ab32-7151f8f2ba55",
+                    "expectedControlType": "Button",
+                    "processors": "AxisDeadzone",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -165,6 +173,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TransformThird",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e99512c-0ba9-43d2-8b82-b6a49db90881",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamePause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
