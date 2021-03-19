@@ -12,30 +12,40 @@ public class PlayerControl : MonoBehaviour
     public GameObject[] characters;
 
     bool activated = false;
+
+    public MainMenu menuControl;
+
+    private bool gameEnd = false;
     // Start is called before the first frame update
     void Start()
     {
         charcterNum = characters.Length;
         curCharacterIdx = 0;
-          
+        menuControl = GameObject.FindObjectOfType<MainMenu>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!activated)
+        if (!gameEnd)
         {
-            activated = true;
-            Vector3 pos = gameObject.transform.position;
-            currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
-        }
-        else
-        {
-            gameObject.transform.position = currCharacter.transform.position;
-        }
-        if (gameObject.transform.position.y < -15)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (!activated)
+            {
+                activated = true;
+                Vector3 pos = gameObject.transform.position;
+                currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+            }
+            else
+            {
+                gameObject.transform.position = currCharacter.transform.position;
+            }
+            if (gameObject.transform.position.y < -15)
+            {
+                gameEnd = true;
+                menuControl.GameEnd(false);
+            }
         }
     }
 
