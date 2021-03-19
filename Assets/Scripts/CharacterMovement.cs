@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.WSA;
-using UnityEngine.SceneManagement;
+
 
 public class CharacterMovement : MonoBehaviour
 {
