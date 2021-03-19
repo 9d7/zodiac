@@ -22,9 +22,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Transform",
+                    "name": "TransformFirst",
                     "type": "Button",
                     "id": "6a91c27a-3482-46f4-86ee-4de67766dc33",
+                    "expectedControlType": "Button",
+                    "processors": "AxisDeadzone",
+                    "interactions": ""
+                },
+                {
+                    "name": "TransformSecond",
+                    "type": "Button",
+                    "id": "b2f9bc5c-e68f-455e-bc74-d637326da1e1",
+                    "expectedControlType": "Button",
+                    "processors": "AxisDeadzone",
+                    "interactions": ""
+                },
+                {
+                    "name": "TransformThird",
+                    "type": "Button",
+                    "id": "a7427573-d6f0-414d-8a6c-a783ab363e27",
                     "expectedControlType": "Button",
                     "processors": "AxisDeadzone",
                     "interactions": ""
@@ -126,7 +142,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "TransformFirst",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a38e5c89-f9ba-4838-89b7-36224a4ff662",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransformSecond",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4425501-baa2-4466-a7fb-85f0bdc0f4a1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransformThird",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

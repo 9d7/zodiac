@@ -39,16 +39,48 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTransform(InputValue value)
+    void OnTransformFirst(InputValue value)
     {
+        if (curCharacterIdx == 0)
+            return;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
-        curCharacterIdx = (curCharacterIdx + 1) % charcterNum;
+        curCharacterIdx = 0;
         currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
+
+    void OnTransformSecond(InputValue value)
+    {
+        if (curCharacterIdx == 1)
+            return;
+        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
+        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
+        Destroy(currCharacter);
+        Vector3 pos = gameObject.transform.position;
+        curCharacterIdx = 1;
+        currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
+        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
+    }
+
+
+    void OnTransformThird(InputValue value)
+    {
+        if (curCharacterIdx == 2 || characters.Length < 3)
+            return;
+        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
+        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
+        Destroy(currCharacter);
+        Vector3 pos = gameObject.transform.position;
+        curCharacterIdx = 2;
+        currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
+        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
+    }
+
 
 }
