@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class LevelSelectButton : MonoBehaviour
 {
     public int levelNumber;
+
+    public string scene;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,7 @@ public class LevelSelectButton : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             // TODO Async this maybe
-            SceneManager.LoadScene("Level" + levelNumber.ToString(), LoadSceneMode.Single);
+            SceneManager.LoadScene(scene, LoadSceneMode.Single);
         });
         
         if (PlayerPrefs.GetInt("maxUnlocked", 1) < levelNumber)

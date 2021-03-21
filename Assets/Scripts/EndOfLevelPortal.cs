@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndOfLevelPortal : MonoBehaviour
 {
+    public LevelList levels;
+    public bool overrideScene;
+    public SceneAsset sceneForOverride = null;
+
     public LayerMask whatIsPlayer;
 
     private float negativeDistance = 0.1f;
@@ -55,15 +60,28 @@ public class EndOfLevelPortal : MonoBehaviour
     {
         // TODO async this maybe
         string sceneName = SceneManager.GetActiveScene().name;
-        int levelNumber = Int32.Parse(sceneName.Substring(sceneName.Length - 1)) + 1;
 
-        if (PlayerPrefs.GetInt("maxUnlocked", 1) < levelNumber)
+        if (overrideScene)
         {
-            PlayerPrefs.SetInt("maxUnlocked", levelNumber);
-            PlayerPrefs.Save();
+            SceneManager.LoadScene(sceneForOverride.name);
         }
 
-        SceneManager.LoadScene("Level" + levelNumber.ToString(), LoadSceneMode.Single);
+        for (int i = 0; i < levels.scenes.Count; i++)
+        {
+            SceneAsset s = levels.scenes[i];
+            if (s.name != sceneName) continue;
+
+            int levelNumber = i + 1;
+            if (PlayerPrefs.GetInt("maxUnlocked", 1) < levelNumber)
+            {
+                PlayerPrefs.SetInt("maxUnlocked", levelNumber);
+                PlayerPrefs.Save();
+            }
+
+            SceneManager.LoadScene(levels.scenes[levelNumber].name, LoadSceneMode.Single);
+            break;
+        }
+
     }
 
 }

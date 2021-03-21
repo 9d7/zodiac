@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c1bce51b59c054e9eb76ee99db8989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: {fileID: 11400000, guid: 89aa55fc4da7b1344b4a45d74e50ddc8, type: 2}
+  overrideScene: 0
+  sceneForOverride: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64

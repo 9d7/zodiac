@@ -9,7 +9,7 @@ public class LevelSelectButtonManager : MonoBehaviour
     // We can set that to a very high number in MainMenu to get debug access to all levels.
 
     [Header("Utility")] [SerializeField] private GameObject button;
-    [SerializeField] private int numberOfLevels;
+    [SerializeField] private LevelList levels;
 
     [Header("Layout")] [SerializeField] private Vector2 marginBetweenButtons;
     [SerializeField] private int buttonsPerRow;
@@ -17,6 +17,7 @@ public class LevelSelectButtonManager : MonoBehaviour
     [SerializeField] private bool centerNonFullRow;
     [SerializeField] private bool centerNonFullCol;
 
+    private int numberOfLevels;
     private int currentPage = 0;
     private int maxPage;
     private int buttonsPerPage;
@@ -30,6 +31,7 @@ public class LevelSelectButtonManager : MonoBehaviour
     {
         buttonsPerPage = buttonsPerRow * rowsPerPage;
         maxPage = (numberOfLevels - 1) / buttonsPerPage;
+        numberOfLevels = levels.scenes.Count;
     }
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,7 @@ public class LevelSelectButtonManager : MonoBehaviour
         {
             GameObject newButton = Instantiate(button, transform, false);
             newButton.GetComponent<LevelSelectButton>().levelNumber = i + 1;
+            newButton.GetComponent<LevelSelectButton>().scene = levels.scenes[i].name;
 
             int page = i / buttonsPerPage;
             int indexInPage = i % buttonsPerPage;
