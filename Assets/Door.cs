@@ -6,59 +6,32 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
-    public GameObject openChild;
-    public GameObject closedChild;
-
-    public int pressesToTrigger;
-    public bool inverted;
-
-    private int numPresses = 0;
-
-    public void RegisterPress(bool pressed)
-    {
-        if (pressed)
-        {
-            numPresses++;
-        }
-        else
-        {
-            numPresses--;
-        }
-
-        if (numPresses == pressesToTrigger)
-        {
-            if (inverted)
-            {
-                Close();
-            }
-            else
-            {
-                Open();
-            }
-        }
-    }
+    public bool startOpen;
+    private GameObject openChild;
+    private GameObject closedChild;
 
     private void Start()
     {
-        if (inverted)
-        {
-            Open();
-        }
-        else
-        {
-            Close();
-        }
+        openChild = transform.Find("Open").gameObject;
+        closedChild = transform.Find("Closed").gameObject;
+
+        Vector2 size = ((RectTransform) transform).rect.size;
+        openChild.GetComponent<SpriteRenderer>().size = size;
+        closedChild.GetComponent<SpriteRenderer>().size = size;
+        closedChild.GetComponent<BoxCollider2D>().size = size;
+
+        OnSwitchableExit(); // get initial position
     }
 
-    void Open()
+    void OnSwitchableEnter()
     {
-        openChild.SetActive(true);
-        closedChild.SetActive(false);
+        openChild.SetActive(!startOpen);
+        closedChild.SetActive(startOpen);
     }
 
-    void Close()
+    void OnSwitchableExit()
     {
-        closedChild.SetActive(true);
-        openChild.SetActive(false);
+        closedChild.SetActive(!startOpen);
+        openChild.SetActive(startOpen);
     }
 }

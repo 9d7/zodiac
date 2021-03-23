@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8788014565555428299}
   - component: {fileID: 8788014565555428298}
   m_Layer: 6
-  m_Name: Character2
-  m_TagString: Untagged
+  m_Name: Turtle
+  m_TagString: turtle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,3 +196,5 @@ MonoBehaviour:
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
+  health: 10
+  underWaterTime: 3

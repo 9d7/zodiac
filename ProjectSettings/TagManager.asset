@@ -7,6 +7,11 @@ TagManager:
   - water
   - ground
   - spike
+  - rabbit
+  - rooster
+  - ox
+  - turtle
+  - coyote
   layers:
   - Default
   - TransparentFX

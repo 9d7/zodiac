@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 893550836103809675}
   m_Layer: 6
   m_Name: Coyote
-  m_TagString: Untagged
+  m_TagString: coyote
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,3 +196,5 @@ MonoBehaviour:
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
+  health: 10
+  underWaterTime: 3
