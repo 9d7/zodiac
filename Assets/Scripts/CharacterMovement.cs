@@ -43,12 +43,17 @@ public class CharacterMovement : MonoBehaviour
     public float health = 10f;
     public float underWaterTime = 3f;
 
+    public bool waterproof = false;
+    public bool spikeproof = false;
+
+    private MainMenu menuControl;
 
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
         rbody.gravityScale = gravityScale;
+        menuControl = GameObject.FindObjectOfType<MainMenu>();
     }
 
     public float GetHorizontalInput()
@@ -158,12 +163,13 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "water")
         {
-            underWaterTime -= Time.deltaTime;
-            //Debug.Log(underWaterTime);
+            Debug.Log("water");
+            menuControl.GameEnd(false);
         }
         if (collision.gameObject.tag == "spike")
         {
             Debug.Log("spike");
+            menuControl.GameEnd(false);
         }
     }
 

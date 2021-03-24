@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     bool activated = false;
 
-    public MainMenu menuControl;
+    private MainMenu menuControl;
 
     private bool gameEnd = false;
     // Start is called before the first frame update
