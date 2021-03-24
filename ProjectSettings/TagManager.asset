@@ -12,6 +12,7 @@ TagManager:
   - ox
   - turtle
   - coyote
+  - rat
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6248031782217462216}
   m_Layer: 6
   m_Name: Rat
-  m_TagString: rabbit
+  m_TagString: rat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,3 +198,5 @@ MonoBehaviour:
   bufferTime: 0.2
   health: 10
   underWaterTime: 3
+  waterproof: 0
+  spikeproof: 0
