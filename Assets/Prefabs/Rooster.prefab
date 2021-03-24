@@ -191,10 +191,12 @@ MonoBehaviour:
   maxJumpHeight: 4.65
   gravityScale: -1
   acceleration: 0.7
-  airAcceleration: 0.5
-  maxSpeed: 0
+  airAcceleration: 1
+  maxSpeed: 2
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
   health: 10
   underWaterTime: 3
+  waterproof: 0
+  spikeproof: 0
