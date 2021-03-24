@@ -9,7 +9,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     [SerializeField] private float FollowSpeed;
 
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private PlayerControl player;
     public Vector3 offset;
     [Range(1, 10)]
     public float smoothFactor;
@@ -22,7 +22,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Follow()
     {
-        Vector3 targetPosition = playerTransform.position + offset;
+        Vector3 targetPosition = player.currCharacter.transform.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothFactor * Time.fixedDeltaTime);
         transform.position = smoothPosition;
     }

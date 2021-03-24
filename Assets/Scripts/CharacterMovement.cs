@@ -84,8 +84,9 @@ public class CharacterMovement : MonoBehaviour
         //
         // try to jump
         //
-        if (timeSinceBuffered < bufferTime && timeSinceGrounded < coyoteTime)
+        if (timeSinceBuffered < bufferTime)
         {
+            Debug.Log("willjump");
             rbody.velocity = new Vector2(
                 rbody.velocity.x,
                 Mathf.Sqrt(-2f * Physics2D.gravity.y * gravityScale * maxJumpHeight));
@@ -139,6 +140,7 @@ public class CharacterMovement : MonoBehaviour
             Vector2 vel = rbody.velocity;
             if (vel.y > 0) // only damp if currently jumping
             {
+                
                 rbody.velocity *= new Vector2(1f, Mathf.Sqrt(minJumpHeight / maxJumpHeight));
             }
         }

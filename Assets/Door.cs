@@ -15,10 +15,10 @@ public class Door : MonoBehaviour
         openChild = transform.Find("Open").gameObject;
         closedChild = transform.Find("Closed").gameObject;
 
-        Vector2 size = ((RectTransform) transform).rect.size;
+        /*Vector2 size = ((Transform) transform).rect.size;
         openChild.GetComponent<SpriteRenderer>().size = size;
         closedChild.GetComponent<SpriteRenderer>().size = size;
-        closedChild.GetComponent<BoxCollider2D>().size = size;
+        closedChild.GetComponent<BoxCollider2D>().size = size;*/
 
         OnSwitchableExit(); // get initial position
     }

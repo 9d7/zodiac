@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,24 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
-    private GameObject currCharacter;
+    public GameObject currCharacter;
     private int charcterNum;
     private int curCharacterIdx;
-    public GameObject[] characters;
+    public CharacterCount[] characters;
+    [SerializeField] private CharacterCountController ccc;
 
     bool activated = false;
 
     public MainMenu menuControl;
+    
+    [Serializable]
+    public struct CharacterCount
+
+    {
+        public GameObject characterPrefab;
+        public int count;
+        public Sprite image;
+    }
 
     private bool gameEnd = false;
     // Start is called before the first frame update
@@ -35,7 +46,7 @@ public class PlayerControl : MonoBehaviour
             {
                 activated = true;
                 Vector3 pos = gameObject.transform.position;
-                currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+                currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
             }
             else
             {
@@ -51,28 +62,33 @@ public class PlayerControl : MonoBehaviour
 
     void OnTransformFirst(InputValue value)
     {
-        if (curCharacterIdx == 0)
+        if (curCharacterIdx == 0 || characters[0].count == 0)
             return;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
         curCharacterIdx = 0;
-        currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        characters[0].count--;
+        
+        ccc.UpdateCount(0, characters[0].count);
+        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
 
     void OnTransformSecond(InputValue value)
     {
-        if (curCharacterIdx == 1)
+        if (curCharacterIdx == 1 || characters[1].count == 0)
             return;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
         curCharacterIdx = 1;
-        currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        characters[1].count--;
+        ccc.UpdateCount(1, characters[1].count);
+        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
@@ -80,14 +96,16 @@ public class PlayerControl : MonoBehaviour
 
     void OnTransformThird(InputValue value)
     {
-        if (curCharacterIdx == 2 || characters.Length < 3)
+        if (curCharacterIdx == 2 || characters.Length < 3 ||  characters[2].count == 0)
             return;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
         curCharacterIdx = 2;
-        currCharacter = Instantiate(characters[curCharacterIdx], pos, Quaternion.identity);
+        characters[2].count--;
+        ccc.UpdateCount(2, characters[2].count);
+        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
