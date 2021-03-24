@@ -188,7 +188,7 @@ MonoBehaviour:
     m_Bits: 128
   boxcastMargins: 0.1
   minJumpHeight: 2
-  maxJumpHeight: 4.65
+  maxJumpHeight: 2
   gravityScale: 3.7
   acceleration: 20
   airAcceleration: 16
