@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.WSA;
-
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -89,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
         //
         // try to jump
         //
-        if (timeSinceBuffered < bufferTime)
+        if (timeSinceBuffered < bufferTime && timeSinceGrounded < bufferTime)
         {
             Debug.Log("willjump");
             rbody.velocity = new Vector2(

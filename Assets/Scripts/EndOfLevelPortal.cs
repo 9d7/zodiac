@@ -9,7 +9,6 @@ public class EndOfLevelPortal : MonoBehaviour
 {
     public LevelList levels;
     public bool overrideScene;
-    public SceneAsset sceneForOverride = null;
 
     public LayerMask whatIsPlayer;
 
@@ -60,16 +59,12 @@ public class EndOfLevelPortal : MonoBehaviour
     {
         // TODO async this maybe
         string sceneName = SceneManager.GetActiveScene().name;
-
-        if (overrideScene)
-        {
-            SceneManager.LoadScene(sceneForOverride.name);
-        }
+        
 
         for (int i = 0; i < levels.scenes.Count; i++)
         {
-            SceneAsset s = levels.scenes[i];
-            if (s.name != sceneName) continue;
+            string s = levels.scenes[i];
+            if (s != sceneName) continue;
 
             int levelNumber = i + 1;
             if (PlayerPrefs.GetInt("maxUnlocked", 1) < levelNumber)
@@ -78,7 +73,7 @@ public class EndOfLevelPortal : MonoBehaviour
                 PlayerPrefs.Save();
             }
 
-            SceneManager.LoadScene(levels.scenes[levelNumber].name, LoadSceneMode.Single);
+            SceneManager.LoadScene(levels.scenes[levelNumber], LoadSceneMode.Single);
             break;
         }
 

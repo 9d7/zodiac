@@ -46,7 +46,7 @@ public class LevelSelectButtonManager : MonoBehaviour
         {
             GameObject newButton = Instantiate(button, transform, false);
             newButton.GetComponent<LevelSelectButton>().levelNumber = i + 1;
-            newButton.GetComponent<LevelSelectButton>().scene = levels.scenes[i].name;
+            newButton.GetComponent<LevelSelectButton>().scene = levels.scenes[i];
 
             int page = i / buttonsPerPage;
             int indexInPage = i % buttonsPerPage;

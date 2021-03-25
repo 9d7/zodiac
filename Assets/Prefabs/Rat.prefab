@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
   boxcastMargins: 0.1
   minJumpHeight: 2
   maxJumpHeight: 2

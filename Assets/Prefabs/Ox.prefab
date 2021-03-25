@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
   boxcastMargins: 0.1
   minJumpHeight: 2
   maxJumpHeight: 4.48
@@ -199,6 +199,8 @@ MonoBehaviour:
   bufferTime: 0.2
   health: 10
   underWaterTime: 3
+  waterproof: 0
+  spikeproof: 0
 --- !u!114 &5726690433255773355
 MonoBehaviour:
   m_ObjectHideFlags: 0
