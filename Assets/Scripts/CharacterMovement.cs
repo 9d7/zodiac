@@ -87,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
         //
         // try to jump
         //
-        if (timeSinceBuffered < bufferTime && timeSinceGrounded < bufferTime)
+        if (timeSinceBuffered < bufferTime && timeSinceGrounded < coyoteTime)
         {
             Debug.Log("willjump");
             rbody.velocity = new Vector2(

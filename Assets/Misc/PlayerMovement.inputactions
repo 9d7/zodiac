@@ -17,7 +17,7 @@
                     "name": "Jump",
                     "type": "Value",
                     "id": "d439d546-7f03-4e48-ab20-2c6948746b18",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "",
                     "processors": "AxisDeadzone",
                     "interactions": ""
                 },
