@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5096210774251519589}
   - component: {fileID: 5096210774251519588}
   - component: {fileID: 5096210774251519594}
+  - component: {fileID: 846011642}
   m_Layer: 0
   m_Name: Platform1
   m_TagString: Untagged
@@ -51,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2f4dc2a059ed66d43b3a820dd3ff8b62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,3 +150,29 @@ PolygonCollider2D:
       - {x: -1.7939104, y: -0.990819}
       - {x: -1.73, y: -0.98999995}
       - {x: 3.4199998, y: -0.98999995}
+--- !u!114 &846011642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096210774251519591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 032d82b100000000
+  m_ShapePath:
+  - {x: -3.1854327, y: -1.0987188, z: 0}
+  - {x: 3.1854327, y: -1.0987188, z: 0}
+  - {x: 3.1854327, y: 1.0987188, z: 0}
+  - {x: -3.1854327, y: 1.0987188, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -30868
