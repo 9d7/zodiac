@@ -22,6 +22,7 @@ public class CharacterCountController : MonoBehaviour
         for (int i = pc.characters.Length; i < charText.Length; i++)
         {
             charImg[i].gameObject.SetActive(false);
+            charText[i].gameObject.SetActive(false);
         }
     }
 
