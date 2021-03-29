@@ -31,7 +31,8 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rbody;
     private Collider2D _collider;
 
-    private bool grounded;
+    private bool _grounded;
+    public bool grounded => _grounded;
     private bool spacePressed;
     private float horizontalVelocity = 0.0f;
 
@@ -77,11 +78,18 @@ public class CharacterMovement : MonoBehaviour
         Vector2 size = new Vector2(colliderPos.extents.x - boxcastMargins, boxcastMargins);
 
         Collider2D[] colliders = Physics2D.OverlapBoxAll(point, size, 0f, whatIsGround);
-        grounded = false;
         if (colliders.Length > 0)
         {
-            grounded = true;
+            if (!grounded && timeSinceGrounded > 0.4f)
+            {
+                SfxManager.PlaySound("land", transform.position);
+            }
+            _grounded = true;
             timeSinceGrounded = 0f;
+        }
+        else
+        {
+            _grounded = false;
         };
 
         //
@@ -89,7 +97,6 @@ public class CharacterMovement : MonoBehaviour
         //
         if (timeSinceBuffered < bufferTime && timeSinceGrounded < coyoteTime)
         {
-            Debug.Log("willjump");
             rbody.velocity = new Vector2(
                 rbody.velocity.x,
                 Mathf.Sqrt(-2f * Physics2D.gravity.y * gravityScale * maxJumpHeight));
@@ -100,6 +107,8 @@ public class CharacterMovement : MonoBehaviour
             {
                 rbody.velocity *= new Vector2(1f, Mathf.Sqrt(minJumpHeight / maxJumpHeight));
             }
+
+            SfxManager.PlaySound("jump", transform.position);
         }
 
         //

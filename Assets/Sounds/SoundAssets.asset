@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4371584074a08479577222d276cb31, type: 3}
   m_Name: SoundAssets
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - id: jump
+    sounds:
+    - {fileID: 8300000, guid: ee0a20bd052816b4ea846ff7ea168663, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: land
+    sounds:
+    - {fileID: 8300000, guid: 5e314c0f183312d4ebed7908791428dc, type: 3}
+    maxPitch: 1
+    minPitch: 0.804
+    volume: 1
+    positional: 0
+    mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: footstep
+    sounds:
+    - {fileID: 8300000, guid: 11542bd76b34e724f9a51069a8a01e02, type: 3}
+    maxPitch: 0.764
+    minPitch: 1.277
+    volume: 0.442
+    positional: 0
+    mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
