@@ -12,6 +12,9 @@ public class SoundEffect : MonoBehaviour
     }
     void Update()
     {
-        if (!src.isPlaying) Destroy(gameObject);
+        if (!src.isPlaying)
+        {
+            Destroy(gameObject);
+        }
     }
 }
