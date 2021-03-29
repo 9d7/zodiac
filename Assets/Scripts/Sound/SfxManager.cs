@@ -18,11 +18,11 @@ public class SfxManager : MonoBehaviour
         globalSfxPlayer = this.sfxPlayer;
     }
 
-    static void PlaySound(string id, Vector3 pos = default(Vector3))
+    public static void PlaySound(string id, Vector3 pos = default(Vector3))
     {
         if (instance is null) return;
 
-        foreach (SoundAsset sound in globalSounds.sounds)
+        foreach (SoundAssetContainer.SoundAsset sound in globalSounds.sounds)
         {
             if (sound.id == id)
             {
@@ -38,6 +38,7 @@ public class SfxManager : MonoBehaviour
                 src.volume = sound.volume;
                 src.outputAudioMixerGroup = sound.mixerGroup;
                 src.spatialBlend = is2d ? 0.0f : 1.0f;
+                src.Play();
                 return;
             }
         }
