@@ -188,8 +188,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   boxcastMargins: 0.1
-  minJumpHeight: 2
-  maxJumpHeight: 2
+  minJumpHeight: 3
+  maxJumpHeight: 5
   gravityScale: 3.7
   acceleration: 20
   airAcceleration: 16
