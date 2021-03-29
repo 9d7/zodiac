@@ -177,8 +177,16 @@ public class CharacterMovement : MonoBehaviour
         }
         if (collision.gameObject.tag == "spike")
         {
-            Debug.Log("spike");
-            menuControl.GameEnd(false);
+            if (spikeproof)
+            {
+                return;
+            }
+            else
+            {
+                Debug.Log("spike");
+                menuControl.GameEnd(false);
+            }
+            
         }
     }
 

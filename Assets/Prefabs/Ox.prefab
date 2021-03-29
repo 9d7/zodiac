@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
   health: 10
   underWaterTime: 3
   waterproof: 0
-  spikeproof: 0
+  spikeproof: 1
 --- !u!114 &5726690433255773355
 MonoBehaviour:
   m_ObjectHideFlags: 0
