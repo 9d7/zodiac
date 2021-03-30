@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorSimple : MonoBehaviour
 {
-    public bool startOpen;
+    public bool invisible = false;
     private Collider2D collider;
     private SpriteRenderer pic;
 
@@ -13,7 +13,15 @@ public class DoorSimple : MonoBehaviour
         collider = this.GetComponent<Collider2D>();
         pic = this.GetComponent<SpriteRenderer>();
         collider.enabled = false;
-        pic.color = new Color(1, 1, 1, 0.1F);
+        if(invisible)
+        {
+            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0F);
+        }
+        else
+        {
+            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
+        }
+        
     }
 
     public void SwitchRegister()
@@ -25,7 +33,7 @@ public class DoorSimple : MonoBehaviour
     {
         Debug.Log("switch enter");
         collider.enabled = !collider.enabled;
-        pic.color = new Color(1, 1, 1, 1F);
+        pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 1F);
     }
 
     public void SwitchRelease()

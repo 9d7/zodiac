@@ -55,6 +55,7 @@ public class CharacterMovement : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         rbody.gravityScale = gravityScale;
         menuControl = GameObject.FindObjectOfType<MainMenu>();
+        timesJumped = numberOfJumps;
     }
 
     public float GetHorizontalInput()
