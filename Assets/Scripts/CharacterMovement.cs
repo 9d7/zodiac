@@ -49,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
 
     private MainMenu menuControl;
 
+    private SpriteRenderer pic;
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -56,6 +57,7 @@ public class CharacterMovement : MonoBehaviour
         rbody.gravityScale = gravityScale;
         menuControl = GameObject.FindObjectOfType<MainMenu>();
         timesJumped = numberOfJumps;
+        pic = this.GetComponent<SpriteRenderer>();
     }
 
     public float GetHorizontalInput()
@@ -140,6 +142,14 @@ public class CharacterMovement : MonoBehaviour
     {
         timeSinceBuffered += Time.deltaTime;
         timeSinceGrounded += Time.deltaTime;
+        if(rbody.velocity.x < 0)
+        {
+            pic.flipX = true;
+        }
+        else
+        {
+            pic.flipX = false;
+        }
     }
 
     void OnMove(InputValue value)
