@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
         charcterNum = characters.Length;
         curCharacterIdx = 0;
         menuControl = GameObject.FindObjectOfType<MainMenu>();
+        ccc = GameObject.FindObjectOfType<CharacterCountController>();
 
 
     }

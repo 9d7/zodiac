@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3579862676942932045}
   - component: {fileID: 3579862676942932048}
   - component: {fileID: 3579862676942932049}
+  - component: {fileID: -1691471790622760354}
   m_Layer: 6
   m_Name: Rooster
   m_TagString: rooster
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 0.3039783, g: 0.9339623, b: 0.8743317, a: 1}
   m_FlipX: 0
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: -1
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -185,18 +186,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
   boxcastMargins: 0.1
-  minJumpHeight: 2
-  maxJumpHeight: 4.65
-  gravityScale: -1
-  acceleration: 0.7
+  minJumpHeight: 5
+  maxJumpHeight: 6
+  gravityScale: 3.76
+  acceleration: 10
   airAcceleration: 1
   maxSpeed: 2
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
+  numberOfJumps: 3
   health: 10
   underWaterTime: 3
   waterproof: 0
   spikeproof: 0
+--- !u!114 &-1691471790622760354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579862676942932042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c013a5d971c977042aa206f607c32ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBetweenFootsteps: 2.5
