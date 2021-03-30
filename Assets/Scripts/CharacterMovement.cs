@@ -26,7 +26,9 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Extra Stuff")] [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float bufferTime = 0.2f;
+    [SerializeField] private int numberOfJumps = 1;
 
+    private int timesJumped = 0;
 
     private Rigidbody2D rbody;
     private Collider2D _collider;
@@ -86,6 +88,7 @@ public class CharacterMovement : MonoBehaviour
             }
             _grounded = true;
             timeSinceGrounded = 0f;
+            timesJumped = 0;
         }
         else
         {
@@ -95,8 +98,9 @@ public class CharacterMovement : MonoBehaviour
         //
         // try to jump
         //
-        if (timeSinceBuffered < bufferTime && timeSinceGrounded < coyoteTime)
+        if (timeSinceBuffered < bufferTime && (timesJumped < numberOfJumps || timeSinceGrounded < coyoteTime))
         {
+            timesJumped++;
             rbody.velocity = new Vector2(
                 rbody.velocity.x,
                 Mathf.Sqrt(-2f * Physics2D.gravity.y * gravityScale * maxJumpHeight));

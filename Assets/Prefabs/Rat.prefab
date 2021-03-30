@@ -197,6 +197,7 @@ MonoBehaviour:
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
+  numberOfJumps: 1
   health: 10
   underWaterTime: 3
   waterproof: 0
