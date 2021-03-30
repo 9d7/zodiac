@@ -14,6 +14,10 @@ public class CameraFollowPlayer : MonoBehaviour
     [Range(1, 10)]
     public float smoothFactor;
 
+    private void Start()
+    {
+        player = GameObject.FindObjectOfType<PlayerControl>();
+    }
     // Update is called once per frame
     private void FixedUpdate()
     {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6248031782217462228}
   - component: {fileID: 6248031782217462217}
   - component: {fileID: 6248031782217462216}
+  - component: {fileID: 8197273915204083213}
   m_Layer: 6
   m_Name: Rat
   m_TagString: rat
@@ -98,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -187,8 +188,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   boxcastMargins: 0.1
-  minJumpHeight: 2
-  maxJumpHeight: 2
+  minJumpHeight: 3
+  maxJumpHeight: 5
   gravityScale: 3.7
   acceleration: 20
   airAcceleration: 16
@@ -196,7 +197,21 @@ MonoBehaviour:
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
+  numberOfJumps: 1
   health: 10
   underWaterTime: 3
   waterproof: 0
   spikeproof: 0
+--- !u!114 &8197273915204083213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248031782217462227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c013a5d971c977042aa206f607c32ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBetweenFootsteps: 2.5
