@@ -13,13 +13,19 @@ public class CharacterCountController : MonoBehaviour
 
     private void Awake()
     {
-        for(int i = 0; i < pc.characters.Length; i ++)
+        RenderCharacters();
+    }
+
+    public void RenderCharacters()
+    {
+        for(int i = 0; i < pc.characters.Count; i ++)
         {
-            charText[i].text = pc.characters[i].count.ToString();
             charImg[i].sprite = pc.characters[i].image;
+            charImg[i].gameObject.SetActive(true);
+            charText[i].gameObject.SetActive(true);
         }
 
-        for (int i = pc.characters.Length; i < charText.Length; i++)
+        for (int i = pc.characters.Count; i < charText.Length; i++)
         {
             charImg[i].gameObject.SetActive(false);
             charText[i].gameObject.SetActive(false);
@@ -29,6 +35,6 @@ public class CharacterCountController : MonoBehaviour
 
     public void UpdateCount(int charIdx, int count)
     {
-        charText[charIdx].text = count.ToString();
+        //charText[charIdx].text = count.ToString();
     }
 }

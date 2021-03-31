@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject currCharacter;
     private int charcterNum;
     private int curCharacterIdx;
-    public CharacterCount[] characters;
+    public List<CharacterCount> characters;
     [SerializeField] private CharacterCountController ccc;
 
     bool activated = false;
@@ -21,6 +22,12 @@ public class PlayerControl : MonoBehaviour
     public struct CharacterCount
 
     {
+        CharacterCount(GameObject cp, int c, Sprite i)
+        {
+            characterPrefab = cp;
+            count = c;
+            image = i;
+        }
         public GameObject characterPrefab;
         public int count;
         public Sprite image;
@@ -30,12 +37,22 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charcterNum = characters.Length;
+        charcterNum = characters.Count;
         curCharacterIdx = 0;
         menuControl = GameObject.FindObjectOfType<MainMenu>();
         ccc = GameObject.FindObjectOfType<CharacterCountController>();
 
 
+    }
+
+    public void AddCharacter(GameObject character, Sprite img)
+    {
+        CharacterCount cc = new CharacterCount();
+        cc.characterPrefab = character;
+        cc.count = 0;
+        cc.image = img;
+        characters.Add(cc);
+        ccc.RenderCharacters();
     }
 
     // Update is called once per frame
@@ -61,55 +78,59 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTransformFirst(InputValue value)
+    public void OnTransformFirst(InputValue value)
     {
-        if (curCharacterIdx == 0 || characters[0].count == 0)
+        if (curCharacterIdx == 0)
             return;
-        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
-        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
-        Destroy(currCharacter);
-        Vector3 pos = gameObject.transform.position;
-        curCharacterIdx = 0;
-        characters[0].count--;
+        DoTransformationAnimation(0);
+    }
+
+    public void OnTransformSecond(InputValue value)
+    {
+        if (curCharacterIdx == 1 || characters.Count < 2)
+            return;
+        DoTransformationAnimation(1);
+    }
+
+
+    public void OnTransformThird(InputValue value)
+    {
+        if (curCharacterIdx == 2 || characters.Count < 3)
+            return;
         
-        ccc.UpdateCount(0, characters[0].count);
-        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
-        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
-        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
+        
+        DoTransformationAnimation(2);
+        
+    }
+    
+    
+
+    public void DoTransformationAnimation(int idx)
+    {
+        StartCoroutine(TransformationEffect(idx));
     }
 
-    void OnTransformSecond(InputValue value)
+    public IEnumerator TransformationEffect(int idx)
     {
-        if (curCharacterIdx == 1 || characters[1].count == 0)
-            return;
-        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
-        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
-        Destroy(currCharacter);
-        Vector3 pos = gameObject.transform.position;
-        curCharacterIdx = 1;
-        characters[1].count--;
-        ccc.UpdateCount(1, characters[1].count);
-        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
-        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
-        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
-    }
-
-
-    void OnTransformThird(InputValue value)
-    {
-        if (curCharacterIdx == 2 || characters.Length < 3 ||  characters[2].count == 0)
-            return;
-        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
-        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
+        currCharacter.GetComponent<Rigidbody2D>().simulated = false;
+        float t = 0;
+        while (t < 10)
+        {
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+            GameManager.Instance.dnc.SetSpeedMultipler(Mathf.Pow(t + 1, 2));
+        }
+        
+        GameManager.Instance.dnc.SetSpeedMultipler(1);
+        GameManager.Instance.dnc.ResetDay();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
         curCharacterIdx = 2;
-        characters[2].count--;
-        ccc.UpdateCount(2, characters[2].count);
-        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
+        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
+        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
+        currCharacter.GetComponent<Rigidbody2D>().simulated = true;
+        currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
-
-
 }

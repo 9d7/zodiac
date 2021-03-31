@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Switch : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Switch : MonoBehaviour
     public bool requiresSpecificCharacter;
     public string specificCharacterName;
     private SpriteRenderer pic;
+    [SerializeField] private Sprite activated;
+    [SerializeField] private Sprite deactivated;
+    [SerializeField] private Light2D light;
 
     private bool isTouching = false;
 
@@ -21,6 +25,9 @@ public class Switch : MonoBehaviour
         {
             gameObject.SendMessage("SwitchRegister");
         }
+
+        light.enabled = false;
+        pic.sprite = deactivated;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,8 +41,10 @@ public class Switch : MonoBehaviour
                 gameObject.SendMessage("SwitchPress");
             }
             //when switch is triggered, faded.
-            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
+            //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             isTouching = true;
+            light.enabled = true;
+            pic.sprite = activated;
         }
 
 
@@ -54,7 +63,9 @@ public class Switch : MonoBehaviour
                 gameObject.SendMessage("SwitchRelease");
             }
 
+            pic.sprite = deactivated;
             isTouching = false;
+            light.enabled = false;
         }
     }
 }

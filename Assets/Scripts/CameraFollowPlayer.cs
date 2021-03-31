@@ -17,7 +17,6 @@ public class CameraFollowPlayer : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindObjectOfType<PlayerControl>();
-        transform.position = player.transform.position + offset;
     }
     // Update is called once per frame
     private void FixedUpdate()

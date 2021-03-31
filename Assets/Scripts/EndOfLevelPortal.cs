@@ -21,7 +21,7 @@ public class EndOfLevelPortal : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         // check if correctly-sized character is in portal
 
@@ -53,6 +53,15 @@ public class EndOfLevelPortal : MonoBehaviour
         }
 
         NextLevel();
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<CharacterMovement>())
+        {
+            NextLevel();
+            
+        }
     }
 
     void NextLevel()
