@@ -114,7 +114,7 @@ public class PlayerControl : MonoBehaviour
     {
         currCharacter.GetComponent<Rigidbody2D>().simulated = false;
         float t = 0;
-        while (t < 10)
+        while (t < 8)
         {
             yield return new WaitForEndOfFrame();
             t += Time.deltaTime;
@@ -125,7 +125,7 @@ public class PlayerControl : MonoBehaviour
         GameManager.Instance.dnc.ResetDay();
         Destroy(currCharacter);
         Vector3 pos = gameObject.transform.position;
-        curCharacterIdx = 2;
+        curCharacterIdx = idx;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         currCharacter.GetComponent<Rigidbody2D>().simulated = true;
