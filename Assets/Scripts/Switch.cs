@@ -10,11 +10,16 @@ public class Switch : MonoBehaviour
     public List<GameObject> objectsToTrigger;
     public bool requiresSpecificCharacter;
     public string specificCharacterName;
+    [SerializeField] private Sprite Activated;
+    [SerializeField] private Sprite Deactivated;
+    private SpriteRenderer sr;
 
     private bool isTouching = false;
 
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = Deactivated;
         foreach (GameObject gameObject in objectsToTrigger)
         {
             gameObject.SendMessage("SwitchRegister");
@@ -27,6 +32,7 @@ public class Switch : MonoBehaviour
 
         if (!isTouching)
         {
+            sr.sprite = Activated;
             foreach (GameObject gameObject in objectsToTrigger)
             {
                 gameObject.SendMessage("SwitchPress");
@@ -45,6 +51,7 @@ public class Switch : MonoBehaviour
 
         if (isTouching)
         {
+            sr.sprite = Deactivated;
             foreach (GameObject gameObject in objectsToTrigger)
             {
                 gameObject.SendMessage("SwitchRelease");
