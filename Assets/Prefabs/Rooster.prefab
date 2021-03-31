@@ -191,9 +191,9 @@ MonoBehaviour:
   minJumpHeight: 5
   maxJumpHeight: 6
   gravityScale: 3.76
-  acceleration: 10
-  airAcceleration: 5
-  maxSpeed: 2
+  acceleration: 2
+  airAcceleration: 10
+  maxSpeed: 10
   stopDamping: 0.0016
   coyoteTime: 0.2
   bufferTime: 0.2
