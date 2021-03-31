@@ -22,4 +22,9 @@ public class DayNightController : MonoBehaviour
     {
         anim.speed = (AnimTime / CycleTime);
     }
+
+    public void ResetDay()
+    {
+        anim.SetTrigger("Reset");
+    }
 }

@@ -47,6 +47,7 @@ public class DialogManager : MonoBehaviour
 
     private IEnumerator DiagRoutine(Dialog[] dgs)
     {
+        Time.timeScale = 0;
         dialogCanvas.alpha = 1;
         isRunningDialog = true;
         foreach(Dialog dg in dgs)
@@ -60,7 +61,7 @@ public class DialogManager : MonoBehaviour
                 while (_t < timeBetweenChars)
                 {
                     yield return new WaitForEndOfFrame();
-                    _t += Time.deltaTime;
+                    _t += Time.unscaledDeltaTime;
                     if (shouldSkip)
                     {
                         break;
@@ -79,7 +80,7 @@ public class DialogManager : MonoBehaviour
             while (_tl < timeBetweenLines)
             {
                 yield return new WaitForEndOfFrame();
-                _tl += Time.deltaTime;
+                _tl += Time.unscaledDeltaTime;
                 if (shouldSkip)
                 {
                     shouldSkip = false;
@@ -90,5 +91,6 @@ public class DialogManager : MonoBehaviour
 
         dialogCanvas.alpha = 0;
         isRunningDialog = false;
+        Time.timeScale = 1;
     } 
 }
