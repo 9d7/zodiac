@@ -10,16 +10,13 @@ public class Switch : MonoBehaviour
     public List<GameObject> objectsToTrigger;
     public bool requiresSpecificCharacter;
     public string specificCharacterName;
-    [SerializeField] private Sprite Activated;
-    [SerializeField] private Sprite Deactivated;
-    private SpriteRenderer sr;
+    private SpriteRenderer pic;
 
     private bool isTouching = false;
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        sr.sprite = Deactivated;
+        pic = this.GetComponent<SpriteRenderer>();
         foreach (GameObject gameObject in objectsToTrigger)
         {
             gameObject.SendMessage("SwitchRegister");
@@ -32,18 +29,19 @@ public class Switch : MonoBehaviour
 
         if (!isTouching)
         {
-            sr.sprite = Activated;
             foreach (GameObject gameObject in objectsToTrigger)
             {
                 gameObject.SendMessage("SwitchPress");
             }
-
+            //when switch is triggered, faded.
+            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             isTouching = true;
         }
 
 
     }
 
+    // not used for now
     private void OnTriggerExit2D(Collider2D other)
     {
         if (requiresSpecificCharacter && !other.gameObject.CompareTag(specificCharacterName)) return;
@@ -51,7 +49,6 @@ public class Switch : MonoBehaviour
 
         if (isTouching)
         {
-            sr.sprite = Deactivated;
             foreach (GameObject gameObject in objectsToTrigger)
             {
                 gameObject.SendMessage("SwitchRelease");
