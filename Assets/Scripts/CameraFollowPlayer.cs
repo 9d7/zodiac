@@ -12,7 +12,7 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField] private PlayerControl player;
     public Vector3 offset;
     [Range(1, 10)]
-    public float smoothFactor;
+    public float smoothFactor = 5;
 
     private void Start()
     {
