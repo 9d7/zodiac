@@ -16,6 +16,7 @@ public class Switch : MonoBehaviour
     [SerializeField] private Sprite deactivated;
     [SerializeField] private Light2D light;
 
+    public bool flipLight;
     private bool isTouching = false;
 
     private void Start()
@@ -26,7 +27,7 @@ public class Switch : MonoBehaviour
             gameObject.SendMessage("SwitchRegister");
         }
 
-        light.enabled = false;
+        light.enabled = flipLight ? true : false;
         pic.sprite = deactivated;
     }
 
@@ -43,7 +44,7 @@ public class Switch : MonoBehaviour
             //when switch is triggered, faded.
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             isTouching = true;
-            light.enabled = true;
+            light.enabled = flipLight ? false : true;
             pic.sprite = activated;
         }
 
@@ -65,7 +66,7 @@ public class Switch : MonoBehaviour
 
             pic.sprite = deactivated;
             isTouching = false;
-            light.enabled = false;
+            light.enabled = flipLight ? true : false;
         }
     }
 }
