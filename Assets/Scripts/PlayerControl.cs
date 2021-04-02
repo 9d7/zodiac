@@ -14,7 +14,6 @@ public class PlayerControl : MonoBehaviour
     public List<CharacterCount> characters;
     [SerializeField] private CharacterCountController ccc;
 
-    bool activated = false;
 
     public MainMenu menuControl;
     
@@ -45,6 +44,12 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        Vector3 pos = gameObject.transform.position;
+        currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
+    }
+
     public void AddCharacter(GameObject character, Sprite img)
     {
         CharacterCount cc = new CharacterCount();
@@ -60,16 +65,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (!gameEnd)
         {
-            if (!activated)
-            {
-                activated = true;
-                Vector3 pos = gameObject.transform.position;
-                currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
-            }
-            else
-            {
-                gameObject.transform.position = currCharacter.transform.position;
-            }
             if (gameObject.transform.position.y < -15)
             {
                 gameEnd = true;

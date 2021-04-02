@@ -25,6 +25,10 @@ public class Switch : MonoBehaviour
         foreach (GameObject gameObject in objectsToTrigger)
         {
             gameObject.SendMessage("SwitchRegister");
+            if (gameObject.GetComponent<Door>())
+            {
+                pic.color = gameObject.GetComponent<Door>().color;
+            }
         }
 
         light.enabled = flipLight ? true : false;
@@ -37,18 +41,30 @@ public class Switch : MonoBehaviour
 
         if (!isTouching)
         {
-            foreach (GameObject gameObject in objectsToTrigger)
-            {
-                gameObject.SendMessage("SwitchPress");
-            }
+
             //when switch is triggered, faded.
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
+            GameManager.Instance.cfp.WatchSomething(2, 2, objectsToTrigger.ToArray());
+            StartCoroutine(ActivateRoutine());
             isTouching = true;
             light.enabled = flipLight ? false : true;
             pic.sprite = activated;
         }
 
 
+    }
+
+    IEnumerator ActivateRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        foreach (GameObject gameObject in objectsToTrigger)
+        {
+            yield return new WaitForSeconds(3f);
+            gameObject.SendMessage("SwitchPress");
+            yield return new WaitForSeconds(1f);
+        }
+        
+        
     }
 
     // not used for now
