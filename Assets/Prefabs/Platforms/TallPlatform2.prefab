@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2704866251836549511}
   - component: {fileID: 2704866251836549512}
   - component: {fileID: 2704866251836549513}
+  - component: {fileID: 1123003750}
   m_Layer: 0
   m_Name: TallPlatform2
   m_TagString: Untagged
@@ -116,3 +117,24 @@ PolygonCollider2D:
       - {x: -1.8076936, y: 7.183044}
       - {x: -1.1654464, y: 7.1842823}
       - {x: 1.0424334, y: 7.178986}
+--- !u!50 &1123003750
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704866251836549510}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 4080452dc7c4d7044846a50512b00440, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -19,9 +19,12 @@ public class Switch : MonoBehaviour
     public bool flipLight;
     private bool isTouching = false;
 
+    private CameraFollowPlayer cameraController;
+
     private void Start()
     {
         pic = this.GetComponent<SpriteRenderer>();
+        cameraController = GameObject.FindObjectOfType<CameraFollowPlayer>();
         foreach (GameObject gameObject in objectsToTrigger)
         {
             gameObject.SendMessage("SwitchRegister");
@@ -39,6 +42,7 @@ public class Switch : MonoBehaviour
         {
             foreach (GameObject gameObject in objectsToTrigger)
             {
+                cameraController.showEventFunc(gameObject);
                 gameObject.SendMessage("SwitchPress");
             }
             //when switch is triggered, faded.
