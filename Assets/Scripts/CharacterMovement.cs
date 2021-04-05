@@ -50,6 +50,8 @@ public class CharacterMovement : MonoBehaviour
     private MainMenu menuControl;
 
     private SpriteRenderer pic;
+
+    public Vector3 lastGroundedPosition;
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -98,6 +100,8 @@ public class CharacterMovement : MonoBehaviour
         {
             _grounded = false;
         };
+        
+        
 
         //
         // try to jump
@@ -143,6 +147,8 @@ public class CharacterMovement : MonoBehaviour
     {
         timeSinceBuffered += Time.deltaTime;
         timeSinceGrounded += Time.deltaTime;
+
+        
         if(rbody.velocity.x < 0)
         {
             pic.flipX = true;
@@ -151,6 +157,12 @@ public class CharacterMovement : MonoBehaviour
         {
             pic.flipX = false;
         }
+    }
+
+
+    public void Reset()
+    {
+        transform.position = lastGroundedPosition;
     }
 
     void OnMove(InputValue value)

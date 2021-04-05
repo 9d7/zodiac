@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes:
   - Level1
+  - Level2
+  - Level3real
   - LevelJerryTest
   - MainMenu

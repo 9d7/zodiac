@@ -13,7 +13,8 @@ public class CameraFollowPlayer : MonoBehaviour
     public Vector3 offset;
     [Range(1, 10)]
     public float smoothFactor = 5;
-    
+
+    public Camera cam;
     private bool ShouldFollow;
 
     private void Start()

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3579862676942932044}
   - component: {fileID: 3579862676942932045}
   - component: {fileID: 3579862676942932048}
-  - component: {fileID: 3579862676942932049}
   - component: {fileID: -1691471790622760354}
+  - component: {fileID: 3003185152559507287}
   m_Layer: 6
   m_Name: Rooster
   m_TagString: rooster
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579862676942932042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.32, y: -4.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -172,36 +172,6 @@ MonoBehaviour:
   m_DefaultActionMap: Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3579862676942932049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3579862676942932042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa823ad93414c341bf79854e9092042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 129
-  boxcastMargins: 0.1
-  minJumpHeight: 5
-  maxJumpHeight: 6
-  gravityScale: 3.76
-  acceleration: 2
-  airAcceleration: 10
-  maxSpeed: 10
-  stopDamping: 0.0016
-  coyoteTime: 0.2
-  bufferTime: 0.2
-  numberOfJumps: 3
-  health: 10
-  underWaterTime: 3
-  waterproof: 0
-  spikeproof: 0
 --- !u!114 &-1691471790622760354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +185,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceBetweenFootsteps: 2.5
+--- !u!114 &3003185152559507287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579862676942932042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726911ebe35271546898024fd506e8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 3
+  jumpSpeed: 5
+  maxJumpTime: 1
+  maxJumps: 3

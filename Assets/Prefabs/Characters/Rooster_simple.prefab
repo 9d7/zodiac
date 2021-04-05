@@ -203,6 +203,7 @@ MonoBehaviour:
   underWaterTime: 3
   waterproof: 0
   spikeproof: 0
+  lastGroundedPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3898246250301243906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +235,4 @@ MonoBehaviour:
   speed: 3
   jumpSpeed: 20
   maxJumpTime: 3
+  maxJumps: 3

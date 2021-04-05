@@ -46,14 +46,6 @@ public class AbsorbCharacter : MonoBehaviour
         GameManager.Instance.pc.AddCharacter(character, spriteChar);
         cm.GetComponent<Rigidbody2D>().simulated = true;
         
-        if (GameManager.Instance.pc.characters.Count > 2)
-        {
-            GameManager.Instance.pc.OnTransformThird(new InputValue());
-        }
-        else
-        {
-            GameManager.Instance.pc.OnTransformSecond(new InputValue());
-        }
         
         absorbtionEffect.Stop();
         

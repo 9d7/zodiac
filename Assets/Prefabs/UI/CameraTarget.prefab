@@ -167,6 +167,7 @@ MonoBehaviour:
   player: {fileID: 0}
   offset: {x: 0, y: 5, z: -15}
   smoothFactor: 7.41
+  cam: {fileID: 2064226783075300309}
   showEventSec: 2
 --- !u!1001 &2258852630391597748
 PrefabInstance:

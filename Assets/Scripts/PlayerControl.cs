@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour
         curCharacterIdx = 0;
         menuControl = GameObject.FindObjectOfType<MainMenu>();
         ccc = GameObject.FindObjectOfType<CharacterCountController>();
-
+        
 
     }
     
@@ -65,24 +65,26 @@ public class PlayerControl : MonoBehaviour
     {
         if (!gameEnd)
         {
-            if (gameObject.transform.position.y < -15)
+            if (currCharacter.transform.position.y < -15)
             {
-                gameEnd = true;
-                menuControl.GameEnd(false);
+                Debug.Log("Resetting");
+                currCharacter.GetComponent<CharacterMovement_simple>().Reset();
+                //menuControl.GameEnd(false);
             }
         }
     }
 
+
     public void OnTransformFirst(InputValue value)
     {
-        if (curCharacterIdx == 0)
+        if (curCharacterIdx == 0 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
             return;
         DoTransformationAnimation(0);
     }
 
     public void OnTransformSecond(InputValue value)
     {
-        if (curCharacterIdx == 1 || characters.Count < 2)
+        if (curCharacterIdx == 1 || characters.Count < 2 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
             return;
         DoTransformationAnimation(1);
     }
@@ -90,7 +92,7 @@ public class PlayerControl : MonoBehaviour
 
     public void OnTransformThird(InputValue value)
     {
-        if (curCharacterIdx == 2 || characters.Count < 3)
+        if (curCharacterIdx == 2 || characters.Count < 3 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
             return;
         
         
@@ -107,24 +109,36 @@ public class PlayerControl : MonoBehaviour
 
     public IEnumerator TransformationEffect(int idx)
     {
+        
         currCharacter.GetComponent<Rigidbody2D>().simulated = false;
         float t = 0;
-        while (t < 8)
+        float originalCamSize = GameManager.Instance.cfp.cam.orthographicSize;
+        while (t < 3)
         {
             yield return new WaitForEndOfFrame();
             t += Time.deltaTime;
-            GameManager.Instance.dnc.SetSpeedMultipler(Mathf.Pow(t + 1, 2));
+            GameManager.Instance.dnc.SetSpeedMultipler(Mathf.Pow(t + 1, 4));
+            GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize, originalCamSize / 1.5f, t / 3);
         }
+
+        t = 0;
+        
         
         GameManager.Instance.dnc.SetSpeedMultipler(1);
         GameManager.Instance.dnc.ResetDay();
         Destroy(currCharacter);
-        Vector3 pos = gameObject.transform.position;
+        Vector3 pos = currCharacter.transform.position;
         curCharacterIdx = idx;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         currCharacter.GetComponent<Rigidbody2D>().simulated = true;
         currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
+        while (t < 1)
+        {
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+            GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize / 1.5f, originalCamSize, t  / 1);
+        }
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
         currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }

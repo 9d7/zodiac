@@ -21,7 +21,16 @@ public class CharacterMovement_simple : MonoBehaviour
 
     private float actionBufferTime;
     private bool onGround;
+    private float timeSinceGrounded = 0;
 
+    private Vector3 lastGroundedPosition;
+    [SerializeField] private int maxJumps = 1;
+
+
+    public bool CanTransform()
+    {
+        return onGround;
+    }
 
     void Awake()
     {
@@ -30,10 +39,16 @@ public class CharacterMovement_simple : MonoBehaviour
         pic = GetComponent<SpriteRenderer>();
         actionBufferTime = 0;
         onGround = false;
+        lastGroundedPosition = transform.position;
     }
 
+    private bool wasGroundedLastFrame = true;
     private void Update()
     {
+        bool grounded = IsGrounded();
+        timeSinceGrounded += Time.deltaTime;
+        
+        
         if (actionBufferTime > 0)
         {
             actionBufferTime -= Time.deltaTime;
@@ -42,11 +57,33 @@ public class CharacterMovement_simple : MonoBehaviour
             if (IsGrounded() && !onGround)
             {
                 actionBufferTime = 0.2f;
-                jumpLeft = maxJumpTime;
                 onGround = true;
-                SfxManager.PlaySound("land", transform.position);
+                if (rbody.velocity.magnitude > 11)
+                {
+                    SfxManager.PlaySound("land", transform.position);
+                }
+                
             }
         }
+        
+        if (grounded && !wasGroundedLastFrame)
+        {
+            timeSinceGrounded = 0;
+            
+        }
+
+        if (grounded && timeSinceGrounded > 0.2f)
+        {
+            jumpLeft = maxJumps;
+            lastGroundedPosition = transform.position;
+            
+        }
+        wasGroundedLastFrame = grounded;
+    }
+
+    public void Reset()
+    {
+        transform.position = lastGroundedPosition;
     }
 
     private void FixedUpdate()
