@@ -329,16 +329,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1788515930944751157, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1788515930944751157, guid: 545cd834c77594ee4a99495653193f48, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1788515930944751157, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 799.9
       objectReference: {fileID: 0}
     - target: {fileID: 1788515930944751158, guid: 545cd834c77594ee4a99495653193f48, type: 3}
       propertyPath: m_Enabled
@@ -426,22 +418,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788515930944751159, guid: 545cd834c77594ee4a99495653193f48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942596327017134505, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 4481.957
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942596327017134505, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 2361.4104
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942596327017134505, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 7.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942596327017134505, guid: 545cd834c77594ee4a99495653193f48, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

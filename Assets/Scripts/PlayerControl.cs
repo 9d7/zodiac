@@ -43,13 +43,13 @@ public class PlayerControl : MonoBehaviour
 
 
     }
-
+    
     private void Awake()
     {
         Vector3 pos = gameObject.transform.position;
         currCharacter = Instantiate(characters[curCharacterIdx].characterPrefab, pos, Quaternion.identity);
     }
-
+    
     public void AddCharacter(GameObject character, Sprite img)
     {
         CharacterCount cc = new CharacterCount();

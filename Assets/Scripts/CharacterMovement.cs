@@ -88,6 +88,7 @@ public class CharacterMovement : MonoBehaviour
             if (!grounded && timeSinceGrounded > 0.4f)
             {
                 //SfxManager.PlaySound("land", transform.position);
+                SfxManager.PlaySound("land", transform.position);
             }
             _grounded = true;
             timeSinceGrounded = 0f;

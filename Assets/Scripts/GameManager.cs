@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public bool DoInitialAnim = true;
     
+    
 
     // Start is called before the first frame update
     void Start()

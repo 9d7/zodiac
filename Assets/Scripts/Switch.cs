@@ -46,6 +46,8 @@ public class Switch : MonoBehaviour
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             GameManager.Instance.cfp.WatchSomething(2, 2, objectsToTrigger.ToArray());
             StartCoroutine(ActivateRoutine());
+            //when switch is triggered, faded.
+            //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             isTouching = true;
             light.enabled = flipLight ? false : true;
             pic.sprite = activated;
@@ -53,7 +55,7 @@ public class Switch : MonoBehaviour
 
 
     }
-
+    
     IEnumerator ActivateRoutine()
     {
         yield return new WaitForSeconds(1);
@@ -66,7 +68,7 @@ public class Switch : MonoBehaviour
         
         
     }
-
+    
     // not used for now
     private void OnTriggerExit2D(Collider2D other)
     {
