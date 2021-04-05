@@ -63,6 +63,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.transform.position = currCharacter.transform.position;
         if (!gameEnd)
         {
             if (currCharacter.transform.position.y < -15)
@@ -121,18 +122,19 @@ public class PlayerControl : MonoBehaviour
             GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize, originalCamSize / 1.5f, t / 3);
         }
 
-        t = 0;
         
         
         GameManager.Instance.dnc.SetSpeedMultipler(1);
         GameManager.Instance.dnc.ResetDay();
-        Destroy(currCharacter);
         Vector3 pos = currCharacter.transform.position;
+        Destroy(currCharacter);
         curCharacterIdx = idx;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
         currCharacter.GetComponent<Rigidbody2D>().simulated = true;
         currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
+        
+        t = 0;
         while (t < 1)
         {
             yield return new WaitForEndOfFrame();

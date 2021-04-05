@@ -9,6 +9,7 @@ public class CharacterMovement_simple : MonoBehaviour
     private Rigidbody2D rbody;
     private Collider2D _collider;
     private SpriteRenderer pic;
+    private MainMenu menuControl;
 
     public float speed = 3f;
     public float jumpSpeed = 5f;
@@ -22,7 +23,7 @@ public class CharacterMovement_simple : MonoBehaviour
     private float actionBufferTime;
     private bool onGround;
     private float timeSinceGrounded = 0;
-
+    
     private Vector3 lastGroundedPosition;
     [SerializeField] private int maxJumps = 1;
 
@@ -31,12 +32,14 @@ public class CharacterMovement_simple : MonoBehaviour
     {
         return onGround;
     }
+    public bool spikeproof = false;
 
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
         pic = GetComponent<SpriteRenderer>();
+        menuControl = GameObject.FindObjectOfType<MainMenu>();
         actionBufferTime = 0;
         onGround = false;
         lastGroundedPosition = transform.position;
@@ -65,7 +68,6 @@ public class CharacterMovement_simple : MonoBehaviour
                 
             }
         }
-        
         if (grounded && !wasGroundedLastFrame)
         {
             timeSinceGrounded = 0;
@@ -88,12 +90,15 @@ public class CharacterMovement_simple : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         rbody.velocity = new Vector2(horizontalVelocity, rbody.velocity.y);
-        if (Mathf.Abs(rbody.velocity.y) > 10)
+        /*
+        if (Mathf.Abs(rbody.velocity.y) > 15)
         {
             //Debug.Log(Mathf.Abs(rbody.velocity.y));
             onGround = false;
         }
+        */
     }
 
     void OnMove(InputValue value)
@@ -121,5 +126,27 @@ public class CharacterMovement_simple : MonoBehaviour
         float extraHeight = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, platformLayer);
         return raycastHit.collider != null;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "water")
+        {
+            Debug.Log("water");
+            menuControl.GameEnd(false);
+        }
+        if (collision.gameObject.tag == "spike")
+        {
+            if (spikeproof)
+            {
+                return;
+            }
+            else
+            {
+                Debug.Log("spike");
+                menuControl.GameEnd(false);
+            }
+
+        }
     }
 }

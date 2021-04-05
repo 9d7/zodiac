@@ -233,3 +233,4 @@ MonoBehaviour:
   speed: 2
   jumpSpeed: 10
   maxJumpTime: 1
+  spikeproof: 1

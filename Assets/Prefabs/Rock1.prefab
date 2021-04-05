@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3888538947678178277}
   - component: {fileID: 3888538947678178278}
-  - component: {fileID: 3888538947678178279}
+  - component: {fileID: 2002062171745827285}
   m_Layer: 0
   m_Name: Rock1
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3888538947678178279
+--- !u!60 &2002062171745827285
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
