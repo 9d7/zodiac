@@ -63,6 +63,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.transform.position = currCharacter.transform.position;
         if (!gameEnd)
         {
             if (gameObject.transform.position.y < -15)
@@ -118,8 +119,8 @@ public class PlayerControl : MonoBehaviour
         
         GameManager.Instance.dnc.SetSpeedMultipler(1);
         GameManager.Instance.dnc.ResetDay();
+        Vector3 pos = currCharacter.transform.position;
         Destroy(currCharacter);
-        Vector3 pos = gameObject.transform.position;
         curCharacterIdx = idx;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
         float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
