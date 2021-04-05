@@ -19,9 +19,12 @@ public class Switch : MonoBehaviour
     public bool flipLight;
     private bool isTouching = false;
 
+    private CameraFollowPlayer cameraController;
+
     private void Start()
     {
         pic = this.GetComponent<SpriteRenderer>();
+        cameraController = GameObject.FindObjectOfType<CameraFollowPlayer>();
         foreach (GameObject gameObject in objectsToTrigger)
         {
             gameObject.SendMessage("SwitchRegister");
