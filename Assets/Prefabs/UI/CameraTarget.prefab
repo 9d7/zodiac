@@ -167,6 +167,7 @@ MonoBehaviour:
   player: {fileID: 0}
   offset: {x: 0, y: 5, z: -15}
   smoothFactor: 7.41
+  showEventSec: 2
 --- !u!1001 &2258852630391597748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,15 +229,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258852630329360189, guid: ccbe0c34a21820b4587d46c784b31c0a, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.504094
       objectReference: {fileID: 0}
     - target: {fileID: 2258852630329360189, guid: ccbe0c34a21820b4587d46c784b31c0a, type: 3}
       propertyPath: m_Color.g
-      value: 0.88235295
+      value: 0.504094
       objectReference: {fileID: 0}
     - target: {fileID: 2258852630329360189, guid: ccbe0c34a21820b4587d46c784b31c0a, type: 3}
       propertyPath: m_Color.r
-      value: 0.46666667
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 2258852630911224174, guid: ccbe0c34a21820b4587d46c784b31c0a, type: 3}
       propertyPath: m_SortingOrder
