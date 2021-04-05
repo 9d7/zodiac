@@ -44,6 +44,8 @@ public class CharacterMovement_simple : MonoBehaviour
         onGround = false;
         lastGroundedPosition = transform.position;
     }
+    
+    
 
     private bool wasGroundedLastFrame = true;
     private void Update()
@@ -121,7 +123,7 @@ public class CharacterMovement_simple : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         float extraHeight = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, platformLayer);

@@ -68,7 +68,6 @@ public class PlayerControl : MonoBehaviour
         {
             if (currCharacter.transform.position.y < -15)
             {
-                Debug.Log("Resetting");
                 currCharacter.GetComponent<CharacterMovement_simple>().Reset();
                 //menuControl.GameEnd(false);
             }

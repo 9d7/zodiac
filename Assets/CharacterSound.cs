@@ -8,18 +8,18 @@ public class CharacterSound : MonoBehaviour
     [SerializeField] private float distanceBetweenFootsteps = 1.0f;
 
     // Start is called before the first frame update
-    private CharacterMovement movement;
+    private CharacterMovement_simple movement;
     private Vector3 lastPosition;
     private float totalMoved = 0f;
     void Start()
     {
-        movement = GetComponent<CharacterMovement>();
+        movement = GetComponent<CharacterMovement_simple>();
         lastPosition = transform.position;
     }
 
     private void FixedUpdate()
     {
-        if (movement.grounded)
+        if (movement.IsGrounded())
         {
             totalMoved += (transform.position - lastPosition).magnitude;
         }
