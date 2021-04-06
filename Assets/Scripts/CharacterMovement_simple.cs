@@ -62,6 +62,7 @@ public class CharacterMovement_simple : MonoBehaviour
     public void Reset()
     {
         transform.position = lastGroundedPosition;
+        SfxManager.PlaySound("lose");
     }
 
     private void FixedUpdate()
@@ -127,6 +128,7 @@ public class CharacterMovement_simple : MonoBehaviour
     void OnJump(InputValue value)
     {
         bool spacePressed = value.isPressed;
+        // rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
         if (spacePressed && jumpLeft > 0)
         {
             if (Time.time - lastJumpTime < 0.1f)

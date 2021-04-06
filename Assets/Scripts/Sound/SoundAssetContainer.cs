@@ -15,6 +15,7 @@ public class SoundAssetContainer : ScriptableObject
         [Range(0f, 2f)] public float minPitch = 1.0f;
         [Range(0f, 1f)] public float volume = 1.0f;
         public bool positional = true;
+        public bool dontDestroyOnLoad = false;
         public AudioMixerGroup mixerGroup;
     }
     public List<SoundAsset> sounds;

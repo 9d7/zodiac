@@ -61,6 +61,8 @@ public class SfxManager : MonoBehaviour
                 src.outputAudioMixerGroup = sound.mixerGroup;
                 src.spatialBlend = is2d ? 0.0f : 1.0f;
                 src.Play();
+
+                if (sound.dontDestroyOnLoad) DontDestroyOnLoad(sfx);
                 return;
             }
         }

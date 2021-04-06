@@ -23,6 +23,7 @@ public class TutorialSign : MonoBehaviour
         if (other.GetComponent<CharacterMovement>() || other.GetComponent<CharacterMovement_simple>())
         {
             canvas.gameObject.SetActive(true);
+            SfxManager.PlaySound("tutorialShow");
         }
     }
 
@@ -31,6 +32,7 @@ public class TutorialSign : MonoBehaviour
         if (other.GetComponent<CharacterMovement>() || other.GetComponent<CharacterMovement_simple>())
         {
             canvas.gameObject.SetActive(false);
+            SfxManager.PlaySound("tutorialHide");
         }
     }
 }

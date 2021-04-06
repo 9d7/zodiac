@@ -7,8 +7,9 @@ public class Collectible : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<CharacterMovement>())
+        if (other.GetComponent<CharacterMovement_simple>())
         {
+            SfxManager.PlaySound("coin");
             Destroy(gameObject);
         }
     }

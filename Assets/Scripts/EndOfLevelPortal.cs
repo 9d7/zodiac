@@ -82,6 +82,7 @@ public class EndOfLevelPortal : MonoBehaviour
                 PlayerPrefs.Save();
             }
 
+            SfxManager.PlaySound("win");
             SceneManager.LoadScene(levels.scenes[levelNumber], LoadSceneMode.Single);
             break;
         }
