@@ -96,26 +96,46 @@ public class CharacterMovement_simple : MonoBehaviour
                 
             }
         }
-        if (grounded && !wasGroundedLastFrame && !GetPlatform().GetComponent<Rigidbody2D>())
+        if (grounded && !wasGroundedLastFrame)
         {
-            
+            StartCoroutine(SetGroundedPosInTime(0.2f));
             timeSinceGrounded = 0;
             jumpLeft = maxJumps;
+
+            if (!GetPlatform().GetComponent<HingeJoint2D>() && GetPlatform().transform.localScale.normalized == new Vector3(1,1,1))
+            {
+                transform.SetParent(GetPlatform());
+            }
             
-            transform.SetParent(GetPlatform());
             
         }else if (!grounded && wasGroundedLastFrame)
         {
             transform.SetParent(null);
         }
 
-        if (grounded && timeSinceGrounded > 0.2f)
-        {
-            
-            lastGroundedPosition = transform.position;
-            
-        }
+      
+        
         wasGroundedLastFrame = grounded;
+    }
+
+    IEnumerator SetGroundedPosInTime(float _t)
+    {
+        Vector3 pos = transform.position;
+        bool wasGrounded = true;
+        for(float t = 0; t < _t; t += Time.deltaTime)
+        {
+            yield return new WaitForEndOfFrame();
+            if (!IsGrounded())
+            {
+                wasGrounded = false;
+                break;
+            }
+        }
+
+        if (wasGrounded)
+        {
+            lastGroundedPosition = pos;
+        }
     }
 
     void OnMove(InputValue value)
@@ -127,6 +147,7 @@ public class CharacterMovement_simple : MonoBehaviour
 
     void OnJump(InputValue value)
     {
+        
         bool spacePressed = value.isPressed;
         // rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
         if (spacePressed && jumpLeft > 0)
@@ -135,7 +156,7 @@ public class CharacterMovement_simple : MonoBehaviour
             {
                 return;
             }
-
+            Debug.Log("jump");
             lastJumpTime = Time.time;
             rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
             actionBufferTime = 0.2f;
