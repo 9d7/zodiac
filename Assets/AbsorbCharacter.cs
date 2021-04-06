@@ -29,13 +29,13 @@ public class AbsorbCharacter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.GetComponent<CharacterMovement>() && !activated)
+        if (other.GetComponent<CharacterMovement_simple>() && !activated)
         {
-            StartCoroutine(AbsorbtionAnimation(other.GetComponent<CharacterMovement>()));
+            StartCoroutine(AbsorbtionAnimation(other.GetComponent<CharacterMovement_simple>()));
         }
     }
 
-    private IEnumerator AbsorbtionAnimation(CharacterMovement cm)
+    private IEnumerator AbsorbtionAnimation(CharacterMovement_simple cm)
     {
         DialogManager.Instance.RunDiag(dialog);
         activated = true;

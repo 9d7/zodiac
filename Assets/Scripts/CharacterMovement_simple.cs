@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +11,7 @@ public class CharacterMovement_simple : MonoBehaviour
     [SerializeField] private LayerMask platformLayer;
     private Rigidbody2D rbody;
     private Collider2D _collider;
+    public float boxcastMargins = 0.1f;
     private SpriteRenderer pic;
     private MainMenu menuControl;
 
@@ -33,6 +37,7 @@ public class CharacterMovement_simple : MonoBehaviour
         return onGround;
     }
     public bool spikeproof = false;
+    private float lastJumpTime;
 
     void Awake()
     {
@@ -42,6 +47,7 @@ public class CharacterMovement_simple : MonoBehaviour
         menuControl = GameObject.FindObjectOfType<MainMenu>();
         actionBufferTime = 0;
         onGround = false;
+        jumpLeft = maxJumps;
         lastGroundedPosition = transform.position;
     }
     
@@ -50,6 +56,25 @@ public class CharacterMovement_simple : MonoBehaviour
     private bool wasGroundedLastFrame = true;
     private void Update()
     {
+        
+    }
+
+    public void Reset()
+    {
+        transform.position = lastGroundedPosition;
+    }
+
+    private void FixedUpdate()
+    {
+        
+        rbody.velocity = new Vector2(horizontalVelocity, rbody.velocity.y);
+        /*
+        if (Mathf.Abs(rbody.velocity.y) > 15)
+        {
+            //Debug.Log(Mathf.Abs(rbody.velocity.y));
+            onGround = false;
+        }
+        */
         bool grounded = IsGrounded();
         timeSinceGrounded += Time.deltaTime;
         
@@ -72,35 +97,22 @@ public class CharacterMovement_simple : MonoBehaviour
         }
         if (grounded && !wasGroundedLastFrame)
         {
-            timeSinceGrounded = 0;
             
+            timeSinceGrounded = 0;
+            jumpLeft = maxJumps;
+            transform.SetParent(GetPlatform());
+        }else if (!grounded && wasGroundedLastFrame)
+        {
+            transform.SetParent(null);
         }
 
         if (grounded && timeSinceGrounded > 0.2f)
         {
-            jumpLeft = maxJumps;
+            
             lastGroundedPosition = transform.position;
             
         }
         wasGroundedLastFrame = grounded;
-    }
-
-    public void Reset()
-    {
-        transform.position = lastGroundedPosition;
-    }
-
-    private void FixedUpdate()
-    {
-        
-        rbody.velocity = new Vector2(horizontalVelocity, rbody.velocity.y);
-        /*
-        if (Mathf.Abs(rbody.velocity.y) > 15)
-        {
-            //Debug.Log(Mathf.Abs(rbody.velocity.y));
-            onGround = false;
-        }
-        */
     }
 
     void OnMove(InputValue value)
@@ -115,6 +127,12 @@ public class CharacterMovement_simple : MonoBehaviour
         bool spacePressed = value.isPressed;
         if (spacePressed && jumpLeft > 0)
         {
+            if (Time.time - lastJumpTime < 0.1f)
+            {
+                return;
+            }
+
+            lastJumpTime = Time.time;
             rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
             actionBufferTime = 0.2f;
             jumpLeft--;
@@ -123,10 +141,21 @@ public class CharacterMovement_simple : MonoBehaviour
         }
     }
 
+    public Transform GetPlatform()
+    {
+        float extraHeight = boxcastMargins;
+        Bounds colliderPos = _collider.bounds;
+
+        RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.down, _collider.bounds.extents.y + extraHeight, platformLayer);
+        return raycastHit.collider.transform;
+    }
+
     public bool IsGrounded()
     {
-        float extraHeight = 0.1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, platformLayer);
+        float extraHeight = boxcastMargins;
+        Bounds colliderPos = _collider.bounds;
+
+        RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.down, _collider.bounds.extents.y + extraHeight, platformLayer);
         return raycastHit.collider != null;
     }
 
@@ -134,7 +163,6 @@ public class CharacterMovement_simple : MonoBehaviour
     {
         if (collision.gameObject.tag == "water")
         {
-            Debug.Log("water");
             menuControl.GameEnd(false);
         }
         if (collision.gameObject.tag == "spike")
@@ -145,10 +173,13 @@ public class CharacterMovement_simple : MonoBehaviour
             }
             else
             {
-                Debug.Log("spike");
                 menuControl.GameEnd(false);
             }
 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
     }
 }

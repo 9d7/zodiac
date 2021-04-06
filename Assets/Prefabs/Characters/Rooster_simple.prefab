@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8012413028202883088}
   - component: {fileID: 8012413028202883089}
   - component: {fileID: 8012413028202883084}
-  - component: {fileID: 8012413028202883085}
   - component: {fileID: 3898246250301243906}
   - component: {fileID: 830353824699737323}
   m_Layer: 6
@@ -173,37 +172,6 @@ MonoBehaviour:
   m_DefaultActionMap: Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8012413028202883085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8012413028202883094}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa823ad93414c341bf79854e9092042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 129
-  boxcastMargins: 0.1
-  minJumpHeight: 5
-  maxJumpHeight: 6
-  gravityScale: 3.76
-  acceleration: 2
-  airAcceleration: 10
-  maxSpeed: 10
-  stopDamping: 0.0016
-  coyoteTime: 0.2
-  bufferTime: 0.2
-  numberOfJumps: 3
-  health: 10
-  underWaterTime: 3
-  waterproof: 0
-  spikeproof: 0
-  lastGroundedPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3898246250301243906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +200,9 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 129
-  speed: 3
-  jumpSpeed: 20
+  boxcastMargins: 0.1
+  speed: 6
+  jumpSpeed: 10
   maxJumpTime: 3
   maxJumps: 3
+  spikeproof: 0

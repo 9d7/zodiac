@@ -57,7 +57,7 @@ public class EndOfLevelPortal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<CharacterMovement>())
+        if (other.GetComponent<CharacterMovement_simple>())
         {
             NextLevel();
             

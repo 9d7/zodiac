@@ -129,7 +129,7 @@ public class PlayerControl : MonoBehaviour
         Destroy(currCharacter);
         curCharacterIdx = idx;
         Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
-        float oldInput = currCharacter.GetComponent<CharacterMovement>().GetHorizontalInput();
+        //float oldInput = currCharacter.GetComponent<CharacterMovement_simple>().GetHorizontalInput();
         currCharacter.GetComponent<Rigidbody2D>().simulated = true;
         currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
         
@@ -141,6 +141,6 @@ public class PlayerControl : MonoBehaviour
             GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize / 1.5f, originalCamSize, t  / 1);
         }
         currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
-        currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
+        //currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
     }
 }
