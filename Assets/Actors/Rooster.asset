@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rooster
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 4c6d094b578003e41ab5db1e9cbed4fa, type: 3}
-  name: 
+  name: rooster

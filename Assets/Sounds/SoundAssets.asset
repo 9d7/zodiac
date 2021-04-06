@@ -20,20 +20,110 @@ MonoBehaviour:
     minPitch: 1
     volume: 1
     positional: 0
+    dontDestroyOnLoad: 0
     mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
   - id: land
     sounds:
     - {fileID: 8300000, guid: 5e314c0f183312d4ebed7908791428dc, type: 3}
     maxPitch: 1
     minPitch: 0.804
-    volume: 1
+    volume: 0.553
     positional: 0
+    dontDestroyOnLoad: 0
     mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
   - id: footstep
     sounds:
     - {fileID: 8300000, guid: 11542bd76b34e724f9a51069a8a01e02, type: 3}
     maxPitch: 0.764
     minPitch: 1.277
-    volume: 0.442
+    volume: 0.223
     positional: 0
+    dontDestroyOnLoad: 0
     mixerGroup: {fileID: 6010523275413970086, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: coin
+    sounds:
+    - {fileID: 8300000, guid: 6ba45e859bd60e9429e7ebbc305b92fd, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: switch
+    sounds:
+    - {fileID: 8300000, guid: d78ca7ab681bd464f9f3a0d70a581454, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: win
+    sounds:
+    - {fileID: 8300000, guid: b69be6221bb688641850b61f85396614, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 1
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: lose
+    sounds:
+    - {fileID: 8300000, guid: 3c5ce805e76453946a33c7c3a42001a7, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: tutorialShow
+    sounds:
+    - {fileID: 8300000, guid: 9657783d1ff96bc4fa5f5c25a66f8bd8, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: tutorialHide
+    sounds:
+    - {fileID: 8300000, guid: 997acd781b34427449277f3dfb188385, type: 3}
+    maxPitch: 1
+    minPitch: 1
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: 8332329329978781246, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: rooster
+    sounds:
+    - {fileID: 8300000, guid: 7420432dc6ae9a74c83f66624987f48c, type: 3}
+    - {fileID: 8300000, guid: b1f5d57b700d06d42a38a593ddd39722, type: 3}
+    - {fileID: 8300000, guid: 9725b9bb0f4a9ad4f8eb7ffe9c2e3b70, type: 3}
+    maxPitch: 0.82
+    minPitch: 1.19
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: rat
+    sounds:
+    - {fileID: 8300000, guid: a173e7d635f727f4fb18d8ab30762bcb, type: 3}
+    - {fileID: 8300000, guid: 00c2cbe0af3319b47803035400ca913b, type: 3}
+    - {fileID: 8300000, guid: b46947e6999fa9748869f41f018d5885, type: 3}
+    maxPitch: 0.82
+    minPitch: 1.19
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: ox
+    sounds:
+    - {fileID: 8300000, guid: 9289380c235013849a82728c7e779ea0, type: 3}
+    - {fileID: 8300000, guid: 42dbc3fbf42cc4d4393232937c550998, type: 3}
+    - {fileID: 8300000, guid: 3c47a4fb34216c941810bcf41922a854, type: 3}
+    maxPitch: 0.82
+    minPitch: 1.19
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}

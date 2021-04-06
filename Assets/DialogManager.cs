@@ -57,6 +57,8 @@ public class DialogManager : MonoBehaviour
             for (int i = 0; i < dg.content.Length; i++)
             {
                 textContent.text += dg.content[i];
+                SfxManager.PlaySound(dg.actor.name.ToLower());
+
                 float _t = 0;
                 while (_t < timeBetweenChars)
                 {
