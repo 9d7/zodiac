@@ -22,6 +22,7 @@ public class CameraFollowPlayer : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        
         ShouldFollow = true;
         transform.position = player.transform.position + offset;
         FadeIn();

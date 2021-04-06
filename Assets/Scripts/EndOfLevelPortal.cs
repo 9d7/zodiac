@@ -59,16 +59,18 @@ public class EndOfLevelPortal : MonoBehaviour
     {
         if (other.GetComponent<CharacterMovement_simple>())
         {
-            NextLevel();
+            StartCoroutine(NextLevel());
             
         }
     }
 
-    void NextLevel()
+    IEnumerator NextLevel()
     {
         // TODO async this maybe
         string sceneName = SceneManager.GetActiveScene().name;
         
+        GameManager.Instance.cfp.FadeOut();
+        yield return new WaitForSeconds(1);
 
         for (int i = 0; i < levels.scenes.Count; i++)
         {

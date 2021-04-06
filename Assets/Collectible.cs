@@ -10,6 +10,7 @@ public class Collectible : MonoBehaviour
         if (other.GetComponent<CharacterMovement_simple>())
         {
             SfxManager.PlaySound("coin");
+            CounterManager.Instance.Increment();
             Destroy(gameObject);
         }
     }

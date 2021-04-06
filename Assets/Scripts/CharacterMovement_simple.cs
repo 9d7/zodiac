@@ -106,7 +106,8 @@ public class CharacterMovement_simple : MonoBehaviour
             timeSinceGrounded = 0;
             jumpLeft = maxJumps;
 
-            if (!GetPlatform().GetComponent<HingeJoint2D>() && (!GetPlatform().GetComponent<Rigidbody2D>() || GetPlatform().GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static))
+            Transform platform = GetPlatform();
+            if (!platform.GetComponent<HingeJoint2D>() && (!platform.GetComponent<Rigidbody2D>() || platform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static) && !platform.GetComponent<Collectible>())
             {
                 transform.SetParent(GetPlatform());
             }
