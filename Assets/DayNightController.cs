@@ -6,6 +6,10 @@ public class DayNightController : MonoBehaviour
 {
     [SerializeField] private float CycleTime = 30;
     [SerializeField] private float AnimTime = 3;
+
+    [SerializeField] private float _dayAmount = 0f;
+    public float dayAmount => _dayAmount;
+
     private Animator anim;
     private void Awake()
     {

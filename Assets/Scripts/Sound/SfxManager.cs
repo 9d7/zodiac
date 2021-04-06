@@ -1,21 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class SfxManager : MonoBehaviour
 {
     private static GameObject instance = null;
     private static SoundAssetContainer globalSounds = null;
     private static GameObject globalSfxPlayer = null;
+    private static DayNightController dnc = null;
+    private static AudioSource day;
+    private static AudioSource night;
 
     public SoundAssetContainer sounds;
     public GameObject sfxPlayer;
     void Awake()
     {
-        if (!(instance is null)) Destroy(gameObject);
-        instance = gameObject;
-        globalSounds = this.sounds;
-        globalSfxPlayer = this.sfxPlayer;
+
+        instance = GameObject.Find("SfxManager");
+        if (instance != null && instance != gameObject) Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            dnc = FindObjectOfType<DayNightController>();
+        };
+
+        globalSounds = sounds;
+        globalSfxPlayer = sfxPlayer;
+
+        AudioSource[] sources = instance.GetComponents<AudioSource>();
+        day = sources[1];
+        night = sources[2];
+
+        day.Play();
+        night.Play();
+        sources[0].Play();
     }
 
     public static void PlaySound(string id, Vector3 pos = default(Vector3))
@@ -43,5 +65,11 @@ public class SfxManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void Update()
+    {
+        day.volume = (dnc.dayAmount + 1f) / 2f;
+        night.volume = (1f - dnc.dayAmount) / 2f;
     }
 }
