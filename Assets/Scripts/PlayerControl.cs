@@ -77,14 +77,14 @@ public class PlayerControl : MonoBehaviour
 
     public void OnTransformFirst(InputValue value)
     {
-        if (curCharacterIdx == 0 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
+        if (curCharacterIdx == 0)
             return;
         DoTransformationAnimation(0);
     }
 
     public void OnTransformSecond(InputValue value)
     {
-        if (curCharacterIdx == 1 || characters.Count < 2 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
+        if (curCharacterIdx == 1 || characters.Count < 2)
             return;
         DoTransformationAnimation(1);
     }
@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour
 
     public void OnTransformThird(InputValue value)
     {
-        if (curCharacterIdx == 2 || characters.Count < 3 || !currCharacter.GetComponent<CharacterMovement_simple>().CanTransform())
+        if (curCharacterIdx == 2 || characters.Count < 3)
             return;
         
         

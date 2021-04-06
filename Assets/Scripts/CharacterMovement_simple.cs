@@ -95,12 +95,14 @@ public class CharacterMovement_simple : MonoBehaviour
                 
             }
         }
-        if (grounded && !wasGroundedLastFrame)
+        if (grounded && !wasGroundedLastFrame && !GetPlatform().GetComponent<Rigidbody2D>())
         {
             
             timeSinceGrounded = 0;
             jumpLeft = maxJumps;
+            
             transform.SetParent(GetPlatform());
+            
         }else if (!grounded && wasGroundedLastFrame)
         {
             transform.SetParent(null);
