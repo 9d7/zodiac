@@ -30,6 +30,9 @@ public class CharacterMovement_simple : MonoBehaviour
     private Vector3 lastGroundedPosition;
     [SerializeField] private int maxJumps = 1;
 
+    public ParticleSystem JumpEffect;
+    public ParticleSystem LandEffect;
+
 
     public bool CanTransform()
     {
@@ -91,8 +94,9 @@ public class CharacterMovement_simple : MonoBehaviour
                 if (rbody.velocity.magnitude > 11)
                 {
                     SfxManager.PlaySound("land", transform.position);
+
                 }
-                
+                LandEffect.Play();
             }
         }
         if (grounded && !wasGroundedLastFrame)
@@ -154,13 +158,13 @@ public class CharacterMovement_simple : MonoBehaviour
             {
                 return;
             }
-            Debug.Log("jump");
             lastJumpTime = Time.time;
             rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
             actionBufferTime = 0.2f;
             jumpLeft--;
             onGround = false;
             SfxManager.PlaySound("jump", transform.position);
+            JumpEffect.Play();
         }
     }
 
