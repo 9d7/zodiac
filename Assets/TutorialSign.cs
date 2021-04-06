@@ -6,10 +6,12 @@ using UnityEngine;
 public class TutorialSign : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
+
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        canvas.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class TutorialSign : MonoBehaviour
     {
         if (other.GetComponent<CharacterMovement>() || other.GetComponent<CharacterMovement_simple>())
         {
-            canvas.gameObject.SetActive(true);
+            anim.SetTrigger("FadeIn");
             SfxManager.PlaySound("tutorialShow");
         }
     }
@@ -31,7 +33,7 @@ public class TutorialSign : MonoBehaviour
     {
         if (other.GetComponent<CharacterMovement>() || other.GetComponent<CharacterMovement_simple>())
         {
-            canvas.gameObject.SetActive(false);
+            anim.SetTrigger("FadeOut");
             SfxManager.PlaySound("tutorialHide");
         }
     }

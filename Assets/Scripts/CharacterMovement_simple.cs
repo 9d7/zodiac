@@ -56,6 +56,7 @@ public class CharacterMovement_simple : MonoBehaviour
     
 
     private bool wasGroundedLastFrame = true;
+    
     private void Update()
     {
         
@@ -91,12 +92,12 @@ public class CharacterMovement_simple : MonoBehaviour
             {
                 actionBufferTime = 0.2f;
                 onGround = true;
-                if (rbody.velocity.magnitude > 11)
+                if (rbody.velocity.y <  -6)
                 {
                     SfxManager.PlaySound("land", transform.position);
-
+                    LandEffect.Play();
                 }
-                LandEffect.Play();
+                
             }
         }
         if (grounded && !wasGroundedLastFrame)
