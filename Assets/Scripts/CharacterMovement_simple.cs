@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -149,7 +148,6 @@ public class CharacterMovement_simple : MonoBehaviour
     {
         
         bool spacePressed = value.isPressed;
-        // rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
         if (spacePressed && jumpLeft > 0)
         {
             if (Time.time - lastJumpTime < 0.1f)
