@@ -107,13 +107,13 @@ public class CharacterMovement_simple : MonoBehaviour
         }
         if (grounded && !wasGroundedLastFrame)
         {
-            StartCoroutine(SetGroundedPosInTime(0.2f));
             timeSinceGrounded = 0;
             jumpLeft = maxJumps;
 
             Transform platform = GetPlatform();
             if (!platform.GetComponent<HingeJoint2D>() && (!platform.GetComponent<Rigidbody2D>() || platform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static) && !platform.GetComponent<Collectible>())
             {
+                StartCoroutine(SetGroundedPosInTime(0.2f));
                 transform.SetParent(GetPlatform());
             }
             
