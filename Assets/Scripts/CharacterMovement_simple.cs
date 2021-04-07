@@ -49,7 +49,7 @@ public class CharacterMovement_simple : MonoBehaviour
         menuControl = GameObject.FindObjectOfType<MainMenu>();
         actionBufferTime = 0;
         onGround = false;
-        jumpLeft = maxJumps;
+        //jumpLeft = maxJumps;
         lastGroundedPosition = transform.position;
     }
     
