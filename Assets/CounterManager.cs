@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,16 +17,28 @@ public class CounterManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(Instance)
+        if (Instance && Instance != this)
+        {
             Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+            counterText.text = "0/" + max;
+        }
+            
 
-        DontDestroyOnLoad(gameObject);
-        Instance = this;
-        counterText.text = "0/" + max;
+        
     }
 
     public void Increment()
     {
         counterText.text = (++count) + "/" + max;
+    }
+
+    private void Update()
+    {
+      
     }
 }
