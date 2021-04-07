@@ -101,7 +101,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9725b9bb0f4a9ad4f8eb7ffe9c2e3b70, type: 3}
     maxPitch: 0.82
     minPitch: 1.19
-    volume: 1
+    volume: 0.723
     positional: 0
     dontDestroyOnLoad: 0
     mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
@@ -112,7 +112,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b46947e6999fa9748869f41f018d5885, type: 3}
     maxPitch: 0.82
     minPitch: 1.19
-    volume: 1
+    volume: 0.736
     positional: 0
     dontDestroyOnLoad: 0
     mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
@@ -123,7 +123,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3c47a4fb34216c941810bcf41922a854, type: 3}
     maxPitch: 0.82
     minPitch: 1.19
-    volume: 1
+    volume: 0.727
     positional: 0
     dontDestroyOnLoad: 0
     mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
