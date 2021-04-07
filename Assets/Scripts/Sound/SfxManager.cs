@@ -71,7 +71,13 @@ public class SfxManager : MonoBehaviour
 
     public void Update()
     {
-        day.volume = (dnc.dayAmount + 1f) / 2f;
-        night.volume = (1f - dnc.dayAmount) / 2f;
+        if (dnc)
+        {
+            day.volume = (dnc.dayAmount + 1f) / 2f;
+            night.volume = (1f - dnc.dayAmount) / 2f;
+        }
+         
+        
+        
     }
 }
