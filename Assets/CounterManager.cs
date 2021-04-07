@@ -10,11 +10,11 @@ public class CounterManager : MonoBehaviour
 
     public TextMeshProUGUI counterText;
 
-    private int count;
+    public int count;
 
-    [SerializeField] private int max;
+    [SerializeField] public int max;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(Instance)
             Destroy(gameObject);
