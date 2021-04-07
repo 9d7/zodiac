@@ -144,7 +144,7 @@ public class PlayerControl : MonoBehaviour
         
             GameManager.Instance.dnc.SetSpeedMultipler(1);
             GameManager.Instance.dnc.ResetDay();
-            Vector3 pos = currCharacter.transform.position;
+            Vector3 pos = currCharacter.transform.position + new Vector3(0, 1, 0);
             Destroy(currCharacter);
             curCharacterIdx = idx;
             Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
