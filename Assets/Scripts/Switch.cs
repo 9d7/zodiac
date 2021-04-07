@@ -21,6 +21,12 @@ public class Switch : MonoBehaviour
 
     private CameraFollowPlayer cameraController;
     public ParticleSystem ActivateEffect;
+
+    public float goTime = 2f;
+    public float stayTime = 2f;
+
+
+
     private void Start()
     {
         pic = this.GetComponent<SpriteRenderer>();
@@ -47,7 +53,7 @@ public class Switch : MonoBehaviour
 
             //when switch is triggered, faded.
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
-            GameManager.Instance.cfp.WatchSomething(2, 2, objectsToTrigger.ToArray());
+            GameManager.Instance.cfp.WatchSomething(goTime, stayTime, objectsToTrigger.ToArray());
             SfxManager.PlaySound("switch");
             if (ActivateEffect)
             {

@@ -10,7 +10,8 @@ public class DoorSimple : MonoBehaviour
     private Color picColor;
 
     private bool triggered;
-    private float flashTime = 2f;
+    public float flashTimePub = 2f;
+    private float flashTime;
     private int flashFreq = 0;
 
     private void Start()
@@ -59,7 +60,7 @@ public class DoorSimple : MonoBehaviour
         pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 1F);
         picColor = pic.color;
         triggered = true;
-        flashTime = 2f;
+        flashTime = flashTimePub;
     }
 
     public void SwitchRelease()
