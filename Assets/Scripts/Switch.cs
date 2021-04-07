@@ -20,7 +20,7 @@ public class Switch : MonoBehaviour
     private bool isTouching = false;
 
     private CameraFollowPlayer cameraController;
-
+    public ParticleSystem ActivateEffect;
     private void Start()
     {
         pic = this.GetComponent<SpriteRenderer>();
@@ -49,6 +49,10 @@ public class Switch : MonoBehaviour
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);
             GameManager.Instance.cfp.WatchSomething(2, 2, objectsToTrigger.ToArray());
             SfxManager.PlaySound("switch");
+            if (ActivateEffect)
+            {
+                ActivateEffect.Play();
+            }
             StartCoroutine(ActivateRoutine());
             //when switch is triggered, faded.
             //pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0.1F);

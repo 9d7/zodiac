@@ -6,9 +6,16 @@ using UnityEngine;
 public class DialogOnAwake : MonoBehaviour
 {
     public DialogManager.Dialog[] dialog;
+    public float waitTime;
 
     private void Start()
     {
-      DialogManager.Instance.RunDiag(dialog);   
+        StartCoroutine(WaitForStart());
+    }
+
+    IEnumerator WaitForStart()
+    {
+        yield return new WaitForSeconds(waitTime);
+        DialogManager.Instance.RunDiag(dialog);   
     }
 }

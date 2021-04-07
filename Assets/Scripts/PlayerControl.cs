@@ -61,17 +61,33 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Update is called once per frame
+    private bool deathLock;
     void Update()
     {
         this.transform.position = currCharacter.transform.position;
         if (!gameEnd)
         {
-            if (currCharacter.transform.position.y < -15)
+            if (currCharacter.transform.position.y < -15 && !deathLock)
             {
-                currCharacter.GetComponent<CharacterMovement_simple>().Reset();
+                
+                StartCoroutine(Death());
+                
                 //menuControl.GameEnd(false);
             }
         }
+    }
+
+    IEnumerator Death()
+    {
+        deathLock = true;
+        transformLock = true;
+        GameManager.Instance.cfp.FadeOut();
+        
+        yield return new WaitForSeconds(2);
+        currCharacter.GetComponent<CharacterMovement_simple>().Reset();
+        GameManager.Instance.cfp.FadeIn();
+        transformLock = false;
+        deathLock = false;
     }
 
 
@@ -107,40 +123,46 @@ public class PlayerControl : MonoBehaviour
         StartCoroutine(TransformationEffect(idx));
     }
 
+    private bool transformLock;
     public IEnumerator TransformationEffect(int idx)
     {
-        
-        currCharacter.GetComponent<Rigidbody2D>().simulated = false;
-        float t = 0;
-        float originalCamSize = GameManager.Instance.cfp.cam.orthographicSize;
-        while (t < 3)
+        if (!transformLock)
         {
-            yield return new WaitForEndOfFrame();
-            t += Time.deltaTime;
-            GameManager.Instance.dnc.SetSpeedMultipler(Mathf.Pow(t + 1, 4));
-            GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize, originalCamSize / 1.5f, t / 3);
-        }
+            transformLock = true;
+            currCharacter.GetComponent<Rigidbody2D>().simulated = false;
+            float t = 0;
+            float originalCamSize = GameManager.Instance.cfp.cam.orthographicSize;
+            while (t < 3)
+            {
+                yield return new WaitForEndOfFrame();
+                t += Time.deltaTime;
+                GameManager.Instance.dnc.SetSpeedMultipler(Mathf.Pow(t + 1, 4));
+                GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize, originalCamSize / 1.5f, t / 3);
+            }
 
         
         
-        GameManager.Instance.dnc.SetSpeedMultipler(1);
-        GameManager.Instance.dnc.ResetDay();
-        Vector3 pos = currCharacter.transform.position;
-        Destroy(currCharacter);
-        curCharacterIdx = idx;
-        Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
-        //float oldInput = currCharacter.GetComponent<CharacterMovement_simple>().GetHorizontalInput();
-        currCharacter.GetComponent<Rigidbody2D>().simulated = true;
-        currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
+            GameManager.Instance.dnc.SetSpeedMultipler(1);
+            GameManager.Instance.dnc.ResetDay();
+            Vector3 pos = currCharacter.transform.position;
+            Destroy(currCharacter);
+            curCharacterIdx = idx;
+            Vector3 oldVel = currCharacter.GetComponent<Rigidbody2D>().velocity;
+            //float oldInput = currCharacter.GetComponent<CharacterMovement_simple>().GetHorizontalInput();
+            currCharacter.GetComponent<Rigidbody2D>().simulated = true;
+            currCharacter = Instantiate(characters[idx].characterPrefab, pos, Quaternion.identity);
         
-        t = 0;
-        while (t < 1)
-        {
-            yield return new WaitForEndOfFrame();
-            t += Time.deltaTime;
-            GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize / 1.5f, originalCamSize, t  / 1);
+            t = 0;
+            while (t < 1)
+            {
+                yield return new WaitForEndOfFrame();
+                t += Time.deltaTime;
+                GameManager.Instance.cfp.cam.orthographicSize = Mathf.Lerp(originalCamSize / 1.5f, originalCamSize, t  / 1);
+            }
+            currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
+            transformLock = false;
+            //currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
         }
-        currCharacter.GetComponent<Rigidbody2D>().velocity = oldVel;
-        //currCharacter.GetComponent<CharacterMovement>().SetHorizontalInput(oldInput);
+        
     }
 }

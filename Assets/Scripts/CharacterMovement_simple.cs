@@ -30,6 +30,9 @@ public class CharacterMovement_simple : MonoBehaviour
     private Vector3 lastGroundedPosition;
     [SerializeField] private int maxJumps = 1;
 
+    public ParticleSystem JumpEffect;
+    public ParticleSystem LandEffect;
+
 
     public bool CanTransform()
     {
@@ -53,6 +56,7 @@ public class CharacterMovement_simple : MonoBehaviour
     
 
     private bool wasGroundedLastFrame = true;
+    
     private void Update()
     {
         
@@ -88,9 +92,10 @@ public class CharacterMovement_simple : MonoBehaviour
             {
                 actionBufferTime = 0.2f;
                 onGround = true;
-                if (rbody.velocity.magnitude > 11)
+                if (rbody.velocity.y <  -6)
                 {
                     SfxManager.PlaySound("land", transform.position);
+                    LandEffect.Play();
                 }
                 
             }
@@ -101,7 +106,8 @@ public class CharacterMovement_simple : MonoBehaviour
             timeSinceGrounded = 0;
             jumpLeft = maxJumps;
 
-            if (!GetPlatform().GetComponent<HingeJoint2D>() && (!GetPlatform().GetComponent<Rigidbody2D>() || GetPlatform().GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static))
+            Transform platform = GetPlatform();
+            if (!platform.GetComponent<HingeJoint2D>() && (!platform.GetComponent<Rigidbody2D>() || platform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static) && !platform.GetComponent<Collectible>())
             {
                 transform.SetParent(GetPlatform());
             }
@@ -154,13 +160,13 @@ public class CharacterMovement_simple : MonoBehaviour
             {
                 return;
             }
-            Debug.Log("jump");
             lastJumpTime = Time.time;
             rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
             actionBufferTime = 0.2f;
             jumpLeft--;
             onGround = false;
             SfxManager.PlaySound("jump", transform.position);
+            JumpEffect.Play();
         }
     }
 

@@ -14,13 +14,19 @@ public class CameraFollowPlayer : MonoBehaviour
     [Range(1, 10)]
     public float smoothFactor = 5;
 
+    private Animator anim;
+
     public Camera cam;
     private bool ShouldFollow;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
+        
         ShouldFollow = true;
         transform.position = player.transform.position + offset;
+        FadeIn();
+
     }
 
     private bool showEvent;
@@ -28,6 +34,15 @@ public class CameraFollowPlayer : MonoBehaviour
     private float showEventTime;
     private GameObject triggeredEvent;
 
+    public void FadeIn()
+    {
+        anim.SetTrigger("FadeIn");
+    }
+    
+    public void FadeOut()
+    {
+        anim.SetTrigger("FadeOut");
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
