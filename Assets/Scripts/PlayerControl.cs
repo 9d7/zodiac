@@ -165,4 +165,9 @@ public class PlayerControl : MonoBehaviour
         }
         
     }
+
+    public void characterDie()
+    {
+        StartCoroutine(Death());
+    }
 }

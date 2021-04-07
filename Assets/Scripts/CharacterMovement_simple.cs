@@ -13,6 +13,7 @@ public class CharacterMovement_simple : MonoBehaviour
     public float boxcastMargins = 0.1f;
     private SpriteRenderer pic;
     private MainMenu menuControl;
+    private PlayerControl player;
 
     public float speed = 3f;
     public float jumpSpeed = 5f;
@@ -47,6 +48,7 @@ public class CharacterMovement_simple : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         pic = GetComponent<SpriteRenderer>();
         menuControl = GameObject.FindObjectOfType<MainMenu>();
+        player = GameObject.FindObjectOfType<PlayerControl>();
         actionBufferTime = 0;
         onGround = false;
         if(IsGrounded())
@@ -195,7 +197,7 @@ public class CharacterMovement_simple : MonoBehaviour
     {
         if (collision.gameObject.tag == "water")
         {
-            menuControl.GameEnd(false);
+            //menuControl.GameEnd(false);
         }
         if (collision.gameObject.tag == "spike")
         {
@@ -205,7 +207,8 @@ public class CharacterMovement_simple : MonoBehaviour
             }
             else
             {
-                menuControl.GameEnd(false);
+                //menuControl.GameEnd(false);
+                player.characterDie();
             }
 
         }
