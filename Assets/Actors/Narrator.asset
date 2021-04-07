@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6f2aa5602287b4f8a4499bcf6fcca5, type: 3}
-  m_Name: Levels
+  m_Script: {fileID: 11500000, guid: 66f2f2dc4c3f94d4e8924db4c60e0a56, type: 3}
+  m_Name: Narrator
   m_EditorClassIdentifier: 
-  scenes:
-  - Level1
-  - Level2
-  - LevelJerryTest
-  - LevelWin
-  - MainMenu
+  sprite: {fileID: 21300000, guid: 57e883c0514d0e3449d93cd2be9f8cdd, type: 3}
+  name: 

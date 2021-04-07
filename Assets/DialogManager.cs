@@ -53,7 +53,10 @@ public class DialogManager : MonoBehaviour
         foreach(Dialog dg in dgs)
         {
             textContent.text = "";
+
             actorImage.sprite = dg.actor.sprite;
+
+            
             for (int i = 0; i < dg.content.Length; i++)
             {
                 textContent.text += dg.content[i];
