@@ -127,3 +127,14 @@ MonoBehaviour:
     positional: 0
     dontDestroyOnLoad: 0
     mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}
+  - id: dragon
+    sounds:
+    - {fileID: 8300000, guid: 7b84c84bb3266964f82df78775e64540, type: 3}
+    - {fileID: 8300000, guid: 8e7a6c75b5a829e43bffd77101803408, type: 3}
+    - {fileID: 8300000, guid: 16b6ec154920a1441b7c2d8b620b0a21, type: 3}
+    maxPitch: 0.82
+    minPitch: 1.19
+    volume: 1
+    positional: 0
+    dontDestroyOnLoad: 0
+    mixerGroup: {fileID: -1863765644536385104, guid: 5dc2bb6af5bc2ff4fa7070c649f112ce, type: 2}

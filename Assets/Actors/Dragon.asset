@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6b8e32b917e309646b1676055e29a6a4, type: 3}
-  name: 
+  name: dragon
